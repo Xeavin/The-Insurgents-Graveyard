@@ -35,8 +35,8 @@ Disables the overlay map which would displayed in the middle of the screen after
 ### No Sounds
 Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.
 
-### No Speed-Mode
-Disables the ability to toggle the speed-mode feature of the game which may be of some use for the speedrunning community.
+### No Speed Mode
+Disables the ability to toggle the speed mode feature of the game which may be of some use for the speedrunning community.
 
 ### No Teleport Requirement
 Teleport stones are no longer required when using the save crystal teleport option.
