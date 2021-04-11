@@ -1,5 +1,5 @@
 # The-Insurgents-Graveyard
-A collection of FFXII LUA scripts I either created for others or which didn't fit into any of my mods. It's important to note that most of these scripts are only used in very specific situations like debuging or modding.
+A collection of FFXII LUA scripts which were either created for others by request or didn't fit into any of my mods. It's important to note that most of these scripts are only used in very specific situations like debuging or modding.
 
 
 ### Camera Position
