@@ -1,4 +1,4 @@
-# The Insurgents Graveyard v1.1.0
+# The Insurgent's Graveyard v1.1.0
 A collection of FFXII LUA scripts that didn't fit into any of my mods or that were requested and created for others. It's important to note that most of these scripts are only used in very specific situations like debuging or modding.
 
 
