@@ -10,7 +10,7 @@ local nmbrosc_newmem = memory.assemble(
 [[
 nmbrosc_code:
   test rdi,rdi
-  je short nmbrotc_ret
+  je short nmbrosc_return
 
   push rbx
   push rsi
@@ -19,17 +19,17 @@ nmbrosc_code:
   sub rsp,0x18
   call 0x0030F5A0
   add rsp,0x18
-  mov byte ptr [rdi+0x4E],sil
-  mov word ptr [rdi+0x06],bx
+  mov [rdi+0x4E],sil
+  mov [rdi+0x06],bx
   pop rsi
   pop rbx
 
-nmbrotc_ret:
+nmbrosc_return:
   jmp 0x0030F488
 
 ]], {"nmbrosc_code"})
 
-print("No Mist Bar Restore On Save Crystals (NMBROSC): Applying patch.")
+print("No Mist Bar Restoration On Save Crystals (NMBROSC): Applying patch.")
 local readBytes = memory.readArray(codePointer, #originalBytes)
 if (#readBytes ~= #originalBytes) then
   print("NMBROSC: Couldn't read from memory.")

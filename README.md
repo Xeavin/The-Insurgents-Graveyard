@@ -1,4 +1,4 @@
-# The-Insurgents-Graveyard
+# The Insurgents Graveyard v1.1.0
 A collection of FFXII LUA scripts that didn't fit into any of my mods or that were requested and created for others. It's important to note that most of these scripts are only used in very specific situations like debuging or modding.
 
 
@@ -6,7 +6,7 @@ A collection of FFXII LUA scripts that didn't fit into any of my mods or that we
 Shows the position of the currently controlled character while roaming. You can use the **RightControl + End** keys to toggle the state of the script.
 
 ### Fixed MP Regeneration
-Multiplies the required steps needed to gain 1 MP by the speed mode multiplier. So one can no longer abuse the speed-mode by running around in circles to regain a lot of MP.
+Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.
 
 ### Forced Fighting Stance
 Forces all party members into a fighting stance if they enter a location that is not a town.
@@ -23,14 +23,14 @@ Forces the game to always use XBOX button prompts, no matter what kind of contro
 ### Lift Story Restrictions
 Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.
 
-### No Heal On Save Crystals
-Touching save crystals will no longer restore HP, MP, etc.
-
-### No Mist Bar Restore On Save Crystals
-Touching save crystal will no longer restore mist bars.
+### No Restoration On Save Crystals
+Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects.
 
 ### No Overlay Map
 Disables the overlay map which would displayed in the middle of the screen after pressing/clicking the Tab/L3/LS key/button.
+
+### No Mist Bar Restoration On Save Crystals
+Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.
 
 ### No Sounds
 Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.
@@ -47,13 +47,21 @@ Removes the randomness factor of a character's HP/MP growth when leveling up (mo
 ### Removeable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 
+### Summons For All
+Allows a summon to be acquired by all characters.
+
+
+## Requirements
+- [External File Loader v1.1.1+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files)
+- [LUA Loader v1.1.13+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files)
 
 ## Installation/Updating/Uninstallation
-- Move/Replace/Remove the .lua file into/from the **{gameDirectory}/x64/scripts/** directory.
+- Move/Replace/Remove the .lua file into/from the **game/x64/scripts/** directory.
 
 ## Compatibility
 - Fully compatible with other mods, unless they incorporate the same changes which should be mentioned in their description.
 - Fully compatible with all game languages.
+- Fully compatible with all save file versions.
 - Only compatible with the latest Steam version of the game (1.0.4.0).
 
 ## Troubleshooting
