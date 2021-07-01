@@ -61,7 +61,7 @@ Allows a summon to be acquired by all characters.
 ## Compatibility
 - Fully compatible with other mods, unless they incorporate the same changes which should be mentioned in their description.
 - Fully compatible with all game languages.
-- Fully compatible with all save file versions.
+- Fully compatible with existing saves (no new game required).
 - Only compatible with the latest Steam version of the game (1.0.4.0).
 
 ## Troubleshooting
