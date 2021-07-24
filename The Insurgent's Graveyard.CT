@@ -1,0 +1,1345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>43369</ID>
+      <Description>"The Insurgent's Graveyard (Microsoft Store)"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>43370</ID>
+          <Description>"Fixed MP Regeneration"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(fmpr_newmem,1024)
+
+fmpr_newmem:
+  //originalcode
+  movd xmm6,[rax]
+  cvtdq2ps xmm6,xmm6
+
+  mulss xmm6,[0139800C] //additive speed mode multiplier
+  jmp fmpr_ret
+
+
+/* Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
+define(fmpr_def,0031B883)
+assert(fmpr_def,66 0F 6E 30 0F 5B F6)
+registersymbol(fmpr_def)
+
+fmpr_def:
+  jmp fmpr_newmem
+  nop 02
+fmpr_ret:
+
+
+[disable]
+fmpr_def:
+  db 66 0F 6E 30 0F 5B F6
+
+unregistersymbol(fmpr_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43371</ID>
+          <Description>"Forced Fighting Stance"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(ffs_newmem,1024)
+
+ffs_newmem:
+  mov edi,edx
+  call 003A1C30 //getCurrentLocationType()
+  mov edx,edi
+
+  test eax,eax
+  je 0032AC45 //is a town
+  jmp 0032AC3C
+
+
+/* Forces all party members outside towns into a fighting stance. */
+define(ffs_def,0032AC0B)
+assert(ffs_def,0F 1F 44 00 00)
+registersymbol(ffs_def)
+
+ffs_def:
+  jmp ffs_newmem
+
+
+[disable]
+ffs_def:
+  db 0F 1F 44 00 00
+
+unregistersymbol(ffs_def)
+
+
+dealloc(ffs_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43372</ID>
+          <Description>"Forced Keyboard Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use keyboard button prompts, as long as no controller is used. */
+define(fkbp_def,001A78C0)
+assert(fkbp_def,0F B6 41 38)
+registersymbol(fkbp_def)
+
+fkbp_def:
+  //movzx eax,byte ptr [rcx+38]
+  xor eax,eax
+  nop 02
+
+
+[disable]
+fkbp_def:
+  db 0F B6 41 38
+
+unregistersymbol(fkbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43373</ID>
+          <Description>"Forced Xbox Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use XBOX button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+define(fxbbp_def,002CF0BE)
+assert(fxbbp_def,83 F8 02)
+registersymbol(fxbbp_def)
+
+fxbbp_def:
+  //cmp eax,02
+  test esp,esp
+  nop
+
+
+[disable]
+fxbbp_def:
+  db 83 F8 02
+
+unregistersymbol(fxbbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43374</ID>
+          <Description>"Forced PS Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use PS button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+define(fpsbp_def,002CF0BE)
+assert(fpsbp_def,83 F8 02)
+registersymbol(fpsbp_def)
+
+fpsbp_def:
+  //cmp eax,02
+  cmp eax,eax
+  nop
+
+
+[disable]
+fpsbp_def:
+  db 83 F8 02
+
+unregistersymbol(fpsbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43416</ID>
+          <Description>"Lift Story Restrictions"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>/* Ignores the requirements in "mapjumpgroupflagrom.bin". */
+[enable]
+/* Party menu. */
+define(lsr_def,002A1E46)
+assert(lsr_def,85 C0)
+registersymbol(lsr_def)
+
+lsr_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* Equipment menu. */
+define(lsr2_def,002A1E72)
+assert(lsr2_def,85 C0)
+registersymbol(lsr2_def)
+
+lsr2_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* Licenses menu. */
+define(lsr3_def,002A1E8F)
+assert(lsr3_def,85 C0)
+registersymbol(lsr3_def)
+
+lsr3_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* Gambits menu. */
+define(lsr4_def,002A1EAC)
+assert(lsr4_def,85 C0)
+registersymbol(lsr4_def)
+
+lsr4_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* World map. */
+define(lsr5_def,002A1ED2)
+assert(lsr5_def,85 C0)
+registersymbol(lsr5_def)
+
+lsr5_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* Clan primer. */
+define(lsr6_def,002A1F07)
+assert(lsr6_def,85 C0)
+registersymbol(lsr6_def)
+
+lsr6_def:
+  //test eax,eax
+  test esp,esp
+
+
+/* Minimap. */
+define(lsr7_def,002725F9)
+assert(lsr7_def,66 83 F8 10)
+registersymbol(lsr7_def)
+
+lsr7_def:
+  //cmp ax,10
+  cmp eax,eax
+  nop 2
+
+
+/* Party leader in battle. */
+define(lsr8_def,00272904)
+assert(lsr8_def,85 C0)
+registersymbol(lsr8_def)
+
+lsr8_def:
+  //test eax,eax
+  test esp,esp
+
+
+[disable]
+lsr8_def:
+  db 85 C0
+
+unregistersymbol(lsr8_def)
+
+
+lsr7_def:
+  db 66 83 F8 10
+
+unregistersymbol(lsr7_def)
+
+
+lsr6_def:
+  db 85 C0
+
+unregistersymbol(lsr6_def)
+
+
+lsr5_def:
+  db 85 C0
+
+unregistersymbol(lsr5_def)
+
+
+lsr4_def:
+  db 85 C0
+
+unregistersymbol(lsr4_def)
+
+
+lsr3_def:
+  db 85 C0
+
+unregistersymbol(lsr3_def)
+
+
+lsr2_def:
+  db 85 C0
+
+unregistersymbol(lsr2_def)
+
+
+lsr_def:
+  db 85 C0
+
+unregistersymbol(lsr_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43376</ID>
+          <Description>"No Mist Bar Restoration On Save Crystals"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(nmbrosc_newmem,1024)
+
+nmbrosc_newmem:
+  push rsi
+  movzx edi,word ptr [rbx+06]
+  movzx esi,byte ptr [rbx+4E]
+  sub rsp,20
+  call 00323A40 //originalcode
+  add rsp,20
+  mov [rbx+4E],sil
+  mov [rbx+06],di
+  pop rsi
+
+  jmp nmbrosc_ret
+
+
+/* Restores current mist bars and mist charge after the healall() vm call. */
+define(nmbrosc_def,00331C58)
+assert(nmbrosc_def,E8 E3 1D FF FF)
+registersymbol(nmbrosc_def)
+
+nmbrosc_def:
+  jmp nmbrosc_newmem
+nmbrosc_ret:
+
+
+[disable]
+nmbrosc_def:
+  db E8 E3 1D FF FF
+
+unregistersymbol(nmbrosc_def)
+
+
+dealloc(nmbrosc_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43377</ID>
+          <Description>"No Overlay Map"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Acts as if the overlay map is already open. */
+define(nom_def,002724A9)
+assert(nom_def,80 3D E0 37 15 01 03)
+registersymbol(nom_def)
+
+nom_def:
+  //cmp byte ptr [013C5C90],03
+  test esp,esp
+  nop 05
+
+
+define(nom2_def,002725B4)
+assert(nom2_def,80 3D D5 36 15 01 03)
+registersymbol(nom2_def)
+
+nom2_def:
+  //cmp byte ptr [013C5C90],03
+  test esp,esp
+  nop 05
+
+
+[disable]
+nom2_def:
+  db 80 3D D5 36 15 01 03
+
+unregistersymbol(nom2_def)
+
+
+nom_def:
+  db 80 3D E0 37 15 01 03
+
+unregistersymbol(nom_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43378</ID>
+          <Description>"No Restoration On Save Crystals"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
+define(nrosc_def,0037EA6F)
+assert(nrosc_def,B8 07 00 00 00)
+registersymbol(nrosc_def)
+
+nrosc_def:
+  //mov eax,00000007
+  xor eax,eax
+  nop 03
+
+
+[disable]
+nrosc_def:
+  db B8 07 00 00 00
+
+unregistersymbol(nrosc_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43379</ID>
+          <Description>"No Sounds"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Retrieves every sound volume as 0. */
+define(ns_def,0083FA7F)
+assert(ns_def,F3 44 0F 10 A3 00 01 00 00)
+registersymbol(ns_def)
+
+ns_def:
+  //movss xmm12,[rbx+00000100]
+  xorps xmm12,xmm12
+  nop 05
+
+
+[disable]
+ns_def:
+  db F3 44 0F 10 A3 00 01 00 00
+
+unregistersymbol(ns_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43380</ID>
+          <Description>"No Speed Mode"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Skips the process of setting the speed mode state completely. */
+define(nsm_def,00248B45)
+assert(nsm_def,E8 E6 47 13 00)
+registersymbol(nsm_def)
+
+nsm_def:
+  //call 0037D330
+  xor eax,eax
+  nop 03
+
+
+[disable]
+nsm_def:
+  db E8 E6 47 13 00
+
+unregistersymbol(nsm_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43381</ID>
+          <Description>"No Teleport Requirement"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(ntr_newmem,1024)
+
+ntr_newmem:
+  cmp ecx,00002000 //teleport stone
+  jne short ntr_originalcode
+  mov eax,00000063
+  ret
+
+ntr_originalcode:
+  sub rsp,28
+  xor edx,edx
+  jmp ntr_ret
+
+
+/* Skips the item count check for teleport stones and sets it to 99 instead. */
+define(ntr_def,0034ECB0)
+assert(ntr_def,48 83 EC 28 33 D2)
+registersymbol(ntr_def)
+
+ntr_def:
+  jmp ntr_newmem
+  nop
+ntr_ret:
+
+
+[disable]
+ntr_def:
+  db 48 83 EC 28 33 D2
+
+unregistersymbol(ntr_def)
+
+
+dealloc(ntr_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43382</ID>
+          <Description>"Perfect HP/MP Bonus Growth"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(phpmpbg_newmem,1024)
+
+phpmpbg_newmem:
+phpmpbg_code:
+  xor eax,eax
+  test ebx,ebx
+  je short phpmpbg_return
+
+  lea eax,[rbx-01]
+  xor edx,edx
+  lea ecx,[rdx+05]
+  div ecx
+
+phpmpbg_return:
+  jmp 0031BE13
+
+
+phpmpbg2_code:
+  xor eax,eax
+  test ebx,ebx
+  je short phpmpbg2_return
+
+  lea eax,[rbx-01]
+
+phpmpbg2_return:
+  jmp 0031BEFC
+
+
+/*
+Old Formula: Min HP Bonus + Random[0, (Min HP Bonus - 1) / 5]
+New Formula: Min HP Bonus + (Min HP Bonus - 1) / 5
+*/
+define(phpmpbg_def,0031BDC2)
+assert(phpmpbg_def,F3 0F 10 05 5A 53 68 00)
+registersymbol(phpmpbg_def)
+
+phpmpbg_def:
+  //movss xmm0,[009A1124]
+  jmp phpmpbg_code
+  nop 03
+
+
+/*
+Old Formula: Min MP Bonus + Random[0, (Min MP Bonus - 1)]
+New Formula: Min MP Bonus + (Min MP Bonus - 1)
+*/
+define(phpmpbg2_def,0031BEB3)
+assert(phpmpbg2_def,F3 0F 10 05 69 52 68 00)
+registersymbol(phpmpbg2_def)
+
+phpmpbg2_def:
+  //movss xmm0,[009A1124]
+  jmp phpmpbg2_code
+  nop 03
+
+
+[disable]
+phpmpbg2_def:
+  db F3 0F 10 05 69 52 68 00
+
+unregistersymbol(phpmpbg2_def)
+
+
+phpmpbg_def:
+  db F3 0F 10 05 5A 53 68 00
+
+unregistersymbol(phpmpbg_def)
+
+
+dealloc(phpmpbg_newmem,1024)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43383</ID>
+          <Description>"Removable Targeted Party Members"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Retrieves a party members targeted state as "not targeted". */
+define(rtpm_def,002A5152)
+assert(rtpm_def,F7 06 00 00 02 00)
+registersymbol(rtpm_def)
+
+rtpm_def:
+  //test [rsi],00020000
+  cmp eax,eax
+  nop 04
+
+
+/* Removes the "Targeted characters cannot be removed from the party." message from the menu. */
+define(rtpm2_def,002A6472)
+assert(rtpm2_def,F7 03 00 00 02 00)
+registersymbol(rtpm2_def)
+
+rtpm2_def:
+  //test [rbx],00020000
+  cmp eax,eax
+  nop 04
+
+
+/* Removes the "locked" icon of targeted party members in the party menu. */
+define(rtpm3_def,002A492A)
+assert(rtpm3_def,0F BA E0 11)
+registersymbol(rtpm3_def)
+
+rtpm3_def:
+  //bt eax,11
+  cmp eax,eax
+  nop 02
+
+
+/* Removes the red name highlight of targeted party members in the party menu. */
+define(rtpm4_def,002A4531)
+assert(rtpm4_def,41 F7 06 00 00 02 00)
+registersymbol(rtpm4_def)
+
+rtpm4_def:
+  //test [r14],00020000
+  cmp eax,eax
+  nop 05
+
+
+[disable]
+rtpm4_def:
+  db 41 F7 06 00 00 02 00
+
+unregistersymbol(rtpm4_def)
+
+
+rtpm3_def:
+  db 0F BA E0 11
+
+unregistersymbol(rtpm3_def)
+
+
+rtpm2_def:
+  db F7 03 00 00 02 00
+
+unregistersymbol(rtpm2_def)
+
+
+rtpm_def:
+  db F7 06 00 00 02 00
+
+unregistersymbol(rtpm_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43384</ID>
+          <Description>"Summons For All"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Allows a summon to be acquired by all characters. */
+define(sfa_def,003479A8)
+assert(sfa_def,85 C0)
+registersymbol(sfa_def)
+
+sfa_def:
+  //test eax,eax
+  cmp eax,eax
+
+
+[disable]
+sfa_def:
+  db 85 C0
+
+unregistersymbol(sfa_def)
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>43400</ID>
+      <Description>"The Insurgent's Graveyard (Steam)"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>43401</ID>
+          <Description>"Fixed MP Regeneration"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(fmpr_newmem,1024)
+
+fmpr_newmem:
+  //originalcode
+  movd xmm6,[rax]
+  cvtdq2ps xmm6,xmm6
+
+  mulss xmm6,[02064AC4] //speed mode multiplier
+  jmp fmpr_ret
+
+
+/* Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
+define(fmpr_def,002F9563)
+assert(fmpr_def,66 0F 6E 30 0F 5B F6)
+registersymbol(fmpr_def)
+
+fmpr_def:
+  jmp fmpr_newmem
+  nop 02
+fmpr_ret:
+
+
+[disable]
+fmpr_def:
+  db 66 0F 6E 30 0F 5B F6
+
+unregistersymbol(fmpr_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43402</ID>
+          <Description>"Forced Fighting Stance"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(ffs_newmem,1024)
+
+ffs_newmem:
+  mov edi,edx
+  call 00377700 //getCurrentLocationType()
+  mov edx,edi
+
+  test eax,eax
+  je 00307F45 //is a town
+  jmp 00307F3C
+
+
+/* Forces all party members outside towns into a fighting stance. */
+define(ffs_def,00307F07)
+assert(ffs_def,66 0F 1F 84 00 00 00 00 00)
+registersymbol(ffs_def)
+
+ffs_def:
+  jmp ffs_newmem
+  nop 04
+
+
+[disable]
+ffs_def:
+  db 66 0F 1F 84 00 00 00 00 00
+
+unregistersymbol(ffs_def)
+
+
+dealloc(ffs_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43403</ID>
+          <Description>"Forced Keyboard Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use keyboard button prompts, as long as no controller is used. */
+define(fkbp_def,00197780)
+assert(fkbp_def,0F B6 41 38)
+registersymbol(fkbp_def)
+
+fkbp_def:
+  //movzx eax,byte ptr [rcx+38]
+  xor eax,eax
+  nop 02
+
+
+[disable]
+fkbp_def:
+  db 0F B6 41 38
+
+unregistersymbol(fkbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43404</ID>
+          <Description>"Forced Xbox Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use XBOX button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+define(fxbbp_def,002AEC1F)
+assert(fxbbp_def,83 F8 02)
+registersymbol(fxbbp_def)
+
+fxbbp_def:
+  //cmp eax,02
+  test esp,esp
+  nop
+
+
+[disable]
+fxbbp_def:
+  db 83 F8 02
+
+unregistersymbol(fxbbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43405</ID>
+          <Description>"Forced PS Button Prompts"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Forces the game to always use PS button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+define(fpsbp_def,002AEC1F)
+assert(fpsbp_def,83 F8 02)
+registersymbol(fpsbp_def)
+
+fpsbp_def:
+  //cmp eax,02
+  cmp eax,eax
+  nop
+
+
+[disable]
+fpsbp_def:
+  db 83 F8 02
+
+unregistersymbol(fpsbp_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43406</ID>
+          <Description>"Lift Story Restrictions"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>/* Ignores the requirements in "mapjumpgroupflagrom.bin". */
+[enable]
+/* Party menu. */
+define(lsr_def,00281B85)
+assert(lsr_def,85 C9)
+registersymbol(lsr_def)
+
+lsr_def:
+  //test ecx,ecx
+  test esp,esp
+
+
+/* Equipment menu. */
+define(lsr2_def,00281BB8)
+assert(lsr2_def,85 C9)
+registersymbol(lsr2_def)
+
+lsr2_def:
+  //test ecx,ecx
+  test esp,esp
+
+
+/* Licenses menu. */
+define(lsr3_def,00281BDC)
+assert(lsr3_def,85 C9)
+registersymbol(lsr3_def)
+
+lsr3_def:
+  //test ecx,ecx
+  test esp,esp
+
+
+/* Gambits menu. */
+define(lsr4_def,00281C00)
+assert(lsr4_def,85 C9)
+registersymbol(lsr4_def)
+
+lsr4_def:
+  //test ecx,ecx
+  test esp,esp
+
+
+/* World map. */
+define(lsr5_def,00281C2D)
+assert(lsr5_def,85 D2)
+registersymbol(lsr5_def)
+
+lsr5_def:
+  //test edx,edx
+  test esp,esp
+
+
+/* Clan primer. */
+define(lsr6_def,00281C69)
+assert(lsr6_def,85 D2)
+registersymbol(lsr6_def)
+
+lsr6_def:
+  //test edx,edx
+  test esp,esp
+
+
+/* Minimap. */
+define(lsr7_def,00253DD6)
+assert(lsr7_def,66 83 F8 10)
+registersymbol(lsr7_def)
+
+lsr7_def:
+  //cmp ax,10
+  cmp eax,eax
+  nop 2
+
+
+/* Party leader in battle. */
+define(lsr8_def,002540B4)
+assert(lsr8_def,85 C0)
+registersymbol(lsr8_def)
+
+lsr8_def:
+  //test eax,eax
+  test esp,esp
+
+
+[disable]
+lsr8_def:
+  db 85 C0
+
+unregistersymbol(lsr8_def)
+
+
+lsr7_def:
+  db 66 83 F8 10
+
+unregistersymbol(lsr7_def)
+
+
+lsr6_def:
+  db 85 D2
+
+unregistersymbol(lsr6_def)
+
+
+lsr5_def:
+  db 85 D2
+
+unregistersymbol(lsr5_def)
+
+
+lsr4_def:
+  db 85 C9
+
+unregistersymbol(lsr4_def)
+
+
+lsr3_def:
+  db 85 C9
+
+unregistersymbol(lsr3_def)
+
+
+lsr2_def:
+  db 85 C9
+
+unregistersymbol(lsr2_def)
+
+
+lsr_def:
+  db 85 C9
+
+unregistersymbol(lsr_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43407</ID>
+          <Description>"No Mist Bar Restoration On Save Crystals"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(nmbrosc_newmem,1024)
+
+nmbrosc_newmem:
+  test rdi,rdi
+  je short nmbrosc_return
+
+  push rbx
+  push rsi
+  movzx ebx,word ptr [rdi+06]
+  movzx esi,byte ptr [rdi+4E]
+  sub rsp,18
+  call 0030F5A0 //originalcode
+  add rsp,18
+  mov [rdi+4E],sil
+  mov [rdi+06],bx
+  pop rsi
+  pop rbx
+
+nmbrosc_return:
+  jmp nmbrosc_ret
+
+
+/* Restores current mist bars and mist charge after the healall() vm call. */
+define(nmbrosc_def,0030F483)
+assert(nmbrosc_def,E8 18 01 00 00)
+registersymbol(nmbrosc_def)
+
+nmbrosc_def:
+  jmp nmbrosc_newmem
+nmbrosc_ret:
+
+
+[disable]
+nmbrosc_def:
+  db E8 18 01 00 00
+
+unregistersymbol(nmbrosc_def)
+
+
+dealloc(nmbrosc_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43408</ID>
+          <Description>"No Overlay Map"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Acts as if the overlay map is already open. */
+define(nom_def,00253C89)
+assert(nom_def,80 3D C0 EA E3 01 03)
+registersymbol(nom_def)
+
+nom_def:
+  //cmp byte ptr [02092750],03
+  test esp,esp
+  nop 05
+
+
+define(nom2_def,00253D9E)
+assert(nom2_def,80 3D AB E9 E3 01 03)
+registersymbol(nom2_def)
+
+nom2_def:
+  //cmp byte ptr [02092750],03
+  test esp,esp
+  nop 05
+
+
+[disable]
+nom2_def:
+  db 80 3D AB E9 E3 01 03
+
+unregistersymbol(nom2_def)
+
+
+nom_def:
+  db 80 3D C0 EA E3 01 03
+
+unregistersymbol(nom_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43409</ID>
+          <Description>"No Restoration On Save Crystals"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
+define(nrosc_def,00359C8F)
+assert(nrosc_def,B8 07 00 00 00)
+registersymbol(nrosc_def)
+
+nrosc_def:
+  //mov eax,00000007
+  xor eax,eax
+  nop 03
+
+
+[disable]
+nrosc_def:
+  db B8 07 00 00 00
+
+unregistersymbol(nrosc_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43410</ID>
+          <Description>"No Sounds"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Retrieves every sound volume as 0. */
+define(ns_def,007E0E7C)
+assert(ns_def,F3 44 0F 10 A3 00 01 00 00)
+registersymbol(ns_def)
+
+ns_def:
+  //movss xmm12,[rbx+00000100]
+  xorps xmm12,xmm12
+  nop 05
+
+
+[disable]
+ns_def:
+  db F3 44 0F 10 A3 00 01 00 00
+
+unregistersymbol(ns_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43411</ID>
+          <Description>"No Speed Mode"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Skips the process of setting the speed mode state completely. */
+define(nsm_def,0022AD02)
+assert(nsm_def,E8 49 D8 12 00)
+registersymbol(nsm_def)
+
+nsm_def:
+  //call 00358550
+  xor eax,eax
+  nop 03
+
+
+[disable]
+nsm_def:
+  db E8 49 D8 12 00
+
+unregistersymbol(nsm_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43412</ID>
+          <Description>"No Teleport Requirement"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(ntr_newmem,1024)
+
+ntr_newmem:
+  cmp ecx,00002000 //teleport stone
+  jne short ntr_originalcode
+  mov eax,00000063
+  ret
+
+ntr_originalcode:
+  sub rsp,28
+  xor edx,edx
+  jmp ntr_ret
+
+
+/* Skips the item count check for teleport stones and sets it to 99 instead. */
+define(ntr_def,0032A860)
+assert(ntr_def,48 83 EC 28 33 D2)
+registersymbol(ntr_def)
+
+ntr_def:
+  jmp ntr_newmem
+  nop
+ntr_ret:
+
+
+[disable]
+ntr_def:
+  db 48 83 EC 28 33 D2
+
+unregistersymbol(ntr_def)
+
+
+dealloc(ntr_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43413</ID>
+          <Description>"Perfect HP/MP Bonus Growth"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(phpmpbg_newmem,1024)
+
+phpmpbg_newmem:
+phpmpbg_code:
+  xor eax,eax
+  test ebx,ebx
+  je short phpmpbg_return
+
+  lea eax,[rbx-01]
+  xor edx,edx
+  lea ecx,[rdx+05]
+  div ecx
+
+phpmpbg_return:
+  jmp 002F9B03
+
+
+phpmpbg2_code:
+  xor eax,eax
+  test ebx,ebx
+  je short phpmpbg2_return
+
+  lea eax,[rbx-01]
+
+phpmpbg2_return:
+  jmp 002F9BBC
+
+
+/*
+Old Formula: Min HP Bonus + Random[0, (Min HP Bonus - 1) / 5]
+New Formula: Min HP Bonus + (Min HP Bonus - 1) / 5
+*/
+define(phpmpbg_def,002F9AB2)
+assert(phpmpbg_def,F3 0F 10 05 2A 96 5F 00)
+registersymbol(phpmpbg_def)
+
+phpmpbg_def:
+  //movss xmm0,[008F30E4]
+  jmp phpmpbg_code
+  nop 03
+
+
+/*
+Old Formula: Min MP Bonus + Random[0, (Min MP Bonus - 1)]
+New Formula: Min MP Bonus + (Min MP Bonus - 1)
+*/
+define(phpmpbg2_def,002F9B73)
+assert(phpmpbg2_def,F3 0F 10 05 69 95 5F 00)
+registersymbol(phpmpbg2_def)
+
+phpmpbg2_def:
+  //movss xmm0,[008F30E4]
+  jmp phpmpbg2_code
+  nop 03
+
+
+[disable]
+phpmpbg2_def:
+  db F3 0F 10 05 69 95 5F 00
+
+unregistersymbol(phpmpbg2_def)
+
+
+phpmpbg_def:
+  db F3 0F 10 05 2A 96 5F 00
+
+unregistersymbol(phpmpbg_def)
+
+
+dealloc(phpmpbg_newmem,1024)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43414</ID>
+          <Description>"Removable Targeted Party Members"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Retrieves a party members targeted state as "not targeted". */
+define(rtpm_def,00284CF2)
+assert(rtpm_def,F7 06 00 00 02 00)
+registersymbol(rtpm_def)
+
+rtpm_def:
+  //test [rsi],00020000
+  cmp eax,eax
+  nop 04
+
+
+/* Removes the "Targeted characters cannot be removed from the party." message from the menu. */
+define(rtpm2_def,00285E12)
+assert(rtpm2_def,F7 03 00 00 02 00)
+registersymbol(rtpm2_def)
+
+rtpm2_def:
+  //test [rbx],00020000
+  cmp eax,eax
+  nop 04
+
+
+/* Removes the "locked" icon of targeted party members in the party menu. */
+define(rtpm3_def,0028463A)
+assert(rtpm3_def,F7 06 00 00 02 00)
+registersymbol(rtpm3_def)
+
+rtpm3_def:
+  //test [rsi],00020000
+  cmp eax,eax
+  nop 04
+
+
+/* Removes the red name highlight of targeted party members in the party menu. */
+define(rtpm4_def,0028427C)
+assert(rtpm4_def,41 F7 06 00 00 02 00)
+registersymbol(rtpm4_def)
+
+rtpm4_def:
+  //test [r14],00020000
+  cmp eax,eax
+  nop 05
+
+
+[disable]
+rtpm4_def:
+  db 41 F7 06 00 00 02 00
+
+unregistersymbol(rtpm4_def)
+
+
+rtpm3_def:
+  db F7 06 00 00 02 00
+
+unregistersymbol(rtpm3_def)
+
+
+rtpm2_def:
+  db F7 03 00 00 02 00
+
+unregistersymbol(rtpm2_def)
+
+
+rtpm_def:
+  db F7 06 00 00 02 00
+
+unregistersymbol(rtpm_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43415</ID>
+          <Description>"Summons For All"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+/* Allows a summon to be acquired by all characters. */
+define(sfa_def,00323E33)
+assert(sfa_def,85 C0)
+registersymbol(sfa_def)
+
+sfa_def:
+  //test eax,eax
+  cmp eax,eax
+
+
+[disable]
+sfa_def:
+  db 85 C0
+
+unregistersymbol(sfa_def)
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Made by Xeavin.
+
+Link to repository:
+https://github.com/Xeavin/The-Insurgents-Graveyard</Comments>
+</CheatTable>

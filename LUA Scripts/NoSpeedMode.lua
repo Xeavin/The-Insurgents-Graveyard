@@ -1,9 +1,10 @@
 --Made by Xeavin
-local codePointer = 0x0022AA3A
-local originalBytes = {0x85, 0xC0}
+local codePointer = 0x0022AD02
+local originalBytes = {0xE8, 0x49, 0xD8, 0x12, 0x00}
 local code =
 [[
-  cmp eax,eax
+  xor eax,eax
+  nop 0x03
 ]]
 
 print("No Speed-Mode (NSM): Applying patch.")

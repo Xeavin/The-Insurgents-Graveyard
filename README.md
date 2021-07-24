@@ -1,9 +1,8 @@
-# The Insurgent's Graveyard v1.1.0
-A collection of FFXII LUA scripts that didn't fit into any of my mods or that were requested and created for others. It's important to note that most of these scripts are only used in very specific situations like debuging or modding.
+# The Insurgent's Graveyard v1.2.0
+A collection of FFXII scripts that were either requested and created for others, or are too niche to be included in any of my other mods.
 
-
-### Camera Position
-Shows the position of the currently controlled character while roaming. You can use the **RightControl + End** keys to toggle the state of the script.
+## Scripts
+The following features are available both as a LUA script (Steam) and as a cheat table (Steam/Microsoft Store). The former works automatically once installed where as the latter needs to be run manually after every game launch. Choose whatever works best for you.
 
 ### Fixed MP Regeneration
 Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.
@@ -12,13 +11,13 @@ Multiplies the number of steps necessary to gain 1 MP by the speed mode multipli
 Forces all party members into a fighting stance if they enter a location that is not a town.
 
 ### Forced Keyboard Button Prompts
-Forces the game to always use keyboard button prompts. 
+Forces the game to always use keyboard button prompts, as long as no controller is used.
 
 ### Forced PS Button Prompts
-Forces the game to always use PS button prompts, no matter what kind of controller is connected.
+Forces the game to always use PS button prompts, regardless of the type of controller used.
 
 ### Forced Xbox Button Prompts
-Forces the game to always use XBOX button prompts, no matter what kind of controller is connected.
+Forces the game to always use XBOX button prompts, regardless of the type of controller used.
 
 ### Lift Story Restrictions
 Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.
@@ -50,30 +49,53 @@ Enables the ability to remove any targeted party members from the party.
 ### Summons For All
 Allows a summon to be acquired by all characters.
 
-
 ## Requirements
+
+### LUA Scripts
 - [External File Loader v1.1.1+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files)
 - [LUA Loader v1.1.13+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files)
 
-## Installation/Updating/Uninstallation
-- Move/Replace/Remove the .lua file into/from the **game/x64/scripts/** directory.
+### Cheat Table
+- [Cheat Engine v7.2+](https://github.com/cheat-engine/cheat-engine/releases)
+
+## Installation/Updating/Uninstallation (LUA Scripts)
+
+### Installation
+1. Download the .lua file with *Right-Click -> Save File/Link as*.
+2. Move the .lua file into the **game/x64/scripts/** directory.
+
+### Updating
+1. Update requirements if necessary.
+2. Follow the installation instructions from above.
+
+### Uninstallation
+1. Remove the .lua file from the **game/x64/scripts/** directory.
+
+## How To Use (Cheat Table):
+1. Download the cheat table with *Right-Click -> Save File/Link as*.
+2. Open the game and Cheat Engine.
+3. Click on *File* -> *Open Process*.
+4. Select the game and click on *Open*.
+5. Click on *File* -> *Open*.
+6. Navigate to the cheat table and click on *Open*.
 
 ## Compatibility
 - Fully compatible with other mods, unless they incorporate the same changes which should be mentioned in their description.
 - Fully compatible with all game languages.
 - Fully compatible with existing saves (no new game required).
-- Only compatible with the latest Steam version of the game (1.0.4.0).
+- Only compatible with either the latest Steam (1.0.4.0) or Microsoft Store (1.0.1.0) version of the game.
 
 ## Troubleshooting
-If you run into any issues, feel free to let me know on the modding community discord [here](https://discord.gg/UBrP6ME).
+Before reporting any bugs, please ensure that your issue is even tied to this mod. This means disabling every other mod first and testing whether or not your issue still persists. If it does, feel free to contact me on the modding community discord [here](https://discord.gg/UBrP6ME).
+
+## My Other Mods
+- [The Insurgent's Companions](https://www.nexusmods.com/finalfantasy12/mods/217)
+- [The Insurgent's Bountiful Bundle](https://www.nexusmods.com/finalfantasy12/mods/185)
+- [The Insurgent's Vision](https://www.nexusmods.com/finalfantasy12/mods/220)
+- [The Insurgent's Manifesto](https://www.nexusmods.com/finalfantasy12/mods/218)
+- [The Insurgent's Toolkit](https://www.nexusmods.com/finalfantasy12/mods/160)
 
 ## Permissions
-- All the assets in this file belong to the author, or are from free-to-use modder's resources.
-- You must get permission from me before you upload this file to other sites.
-- You must get permission from me before you are allowed to modify my files to improve it.
-- You are not allowed to convert this file to work on other games under any circumstances.
-- You must get permission from me before you are allowed to use any of the assets in this file.
-- You are not allowed to use assets from this file in any mods/files that are being sold, for money, on Steam Workshop or other platforms.
-- (Nexusmods) You are allowed to earn Donation Points for your mods if they use my assets.
-
-Unless otherwise specified, everything I upload is my own work and can under no circumstances be distributed without my permission. Nevertheless, I will give permission to almost everyone who asks for it. This permission section is merely there to prevent people from copy pasting my scripts into their mods without permission, or uploading them all as separate mods.
+- All files in this repository belong to the author, or are from free-to-use modders resources.
+- You must get permission from me before you upload my files to other sites.
+- You must get permission from me before you are allowed to use, modify or convert my files.
