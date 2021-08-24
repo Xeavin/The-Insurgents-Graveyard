@@ -1,8 +1,14 @@
-# The Insurgent's Graveyard v1.2.0
+# The Insurgent's Graveyard v1.3.0
 A collection of FFXII scripts that were either requested and created for others, or are too niche to be included in any of my other mods.
 
 ## Scripts
 The following features are available both as a LUA script (Steam) and as a cheat table (Steam/Microsoft Store). The former works automatically once installed where as the latter needs to be run manually after every game launch. Choose whatever works best for you.
+
+### Always Spawn Treasures
+Treasure always spawn, no matter their spawn chance or uniqueness.
+
+### Always Steal Everything
+Stealing is always successful and includes all items. However, it is still limited to once per foe. For continuous stealing, you can use the *Unlimited Stealable Foe Items* feature of [The Insurgent's Bountiful Bundle](https://www.nexusmods.com/finalfantasy12/mods/185)
 
 ### Fixed MP Regeneration
 Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.

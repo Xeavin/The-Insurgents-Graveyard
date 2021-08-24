@@ -48,5 +48,4 @@ local function onExit()
   memory.unregisterAllSymbols()
   collectgarbage()
 end
-
 event.registerEventAsync("exit", onExit)
