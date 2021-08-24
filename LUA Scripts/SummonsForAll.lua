@@ -24,5 +24,4 @@ end
 local function onExit()
   collectgarbage()
 end
-
 event.registerEventAsync("exit", onExit)
