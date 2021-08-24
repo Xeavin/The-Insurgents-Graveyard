@@ -67,7 +67,7 @@ Allows a summon to be acquired by all characters.
 ## Installation/Updating/Uninstallation (LUA Scripts)
 
 ### Installation
-1. Download the .lua file with *Right-Click -> Save File/Link as*.
+1. Download the repository as an archive with *Code -> Download ZIP* (green button at the top right) and extract it.
 2. Move the .lua file into the **game/x64/scripts/** directory.
 
 ### Updating
@@ -78,7 +78,7 @@ Allows a summon to be acquired by all characters.
 1. Remove the .lua file from the **game/x64/scripts/** directory.
 
 ## How To Use (Cheat Table):
-1. Download the cheat table with *Right-Click -> Save File/Link as*.
+1. Download the repository as an archive with *Code -> Download ZIP* (green button at the top right) and extract it.
 2. Open the game and Cheat Engine.
 3. Click on *File* -> *Open Process*.
 4. Select the game and click on *Open*.
