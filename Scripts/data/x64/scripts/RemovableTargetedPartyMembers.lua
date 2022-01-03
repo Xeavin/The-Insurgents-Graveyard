@@ -1,66 +1,49 @@
 --Made by Xeavin
 local codePointers = {
-0x00281B85,
-0x00281BB8,
-0x00281BDC,
-0x00281C00,
-0x00281C2D,
-0x00281C69,
-0x00253DD6,
-0x002540B4}
+0x00284CF2,
+0x00285E12,
+0x0028463A,
+0x0028427C}
 
 local originalBytes = {
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xD2},
-{0x85, 0xD2},
-{0x66, 0x83, 0xF8, 0x10},
-{0x85, 0xC0}}
+{0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
+{0xF7, 0x03, 0x00, 0x00, 0x02, 0x00},
+{0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
+{0x41, 0xF7, 0x06, 0x00, 0x00, 0x02, 0x00}}
 
 local codes = {
 [[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
+  cmp eax,eax
+  nop 0x04
 ]],
 [[
   cmp eax,eax
-  nop 0x02
+  nop 0x04
 ]],
 [[
-  test esp,esp
+  cmp eax,eax
+  nop 0x04
+]],
+[[
+  cmp eax,eax
+  nop 0x05
 ]]}
 
-print("Lift Story Restrictions (LSR): Applying patch.")
+print("Removable Targeted Party Members (RTPM): Applying patch.")
 for i = 1, #codePointers do
   local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
   if (#readBytes ~= #originalBytes[i]) then
-    print("LSR: Couldn't read from memory.")
+    print("RTPM: Couldn't read from memory.")
     return
   elseif (table.concat(readBytes) ~= table.concat(originalBytes[i])) then
-    print("LSR: Unexpected values, aborting.")
+    print("RTPM: Unexpected values, aborting.")
     return
   end
 end
 
 for i = 1, #codePointers do
   if not (memory.assemble(codes[i], codePointers[i])) then
-    print("LSR: Couldn't write to memory.")
+    print("RTPM: Couldn't write to memory.")
     return
   end
 end
@@ -68,4 +51,5 @@ end
 local function onExit()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

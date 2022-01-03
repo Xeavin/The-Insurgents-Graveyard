@@ -5,7 +5,7 @@ local codePointers = {
 
 local originalBytes = {
 {0xF3, 0x0F, 0x10, 0x05, 0x2A, 0x96, 0x5F, 0x00},
-{0xF3, 0x0F, 0x10, 0x05, 0x69, 0x95, 0x5F, 0x00}}
+{0xF3, 0x0F, 0x10, 0x05, 0x69, 0x95, 0x5F}}
 
 local codes = {
 [[
@@ -17,7 +17,7 @@ local codes = {
   nop 0x03
 ]]}
 
-local phpmpbg_newmem = memory.assemble(
+memory.assemble(
 [[
 phpmpbg_code:
   xor eax,eax
@@ -65,6 +65,8 @@ for i = 1, #codePointers do
 end
 
 local function onExit()
+  memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

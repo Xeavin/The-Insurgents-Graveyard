@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="34">
+<CheatTable CheatEngineTableVersion="38">
   <CheatEntries>
     <CheatEntry>
       <ID>43369</ID>
@@ -10,26 +10,53 @@
         <CheatEntry>
           <ID>43940</ID>
           <Description>"Always Spawn Treasures"</Description>
+          <Options moHideChildren="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
 alloc(ast_newmem,1024)
 
+label(ast_us)
+registersymbol(ast_us)
+
 ast_newmem:
 ast_code:
-  sub rsp,18
+  mov [rsp+08],rbx
+  sub rsp,28
+  mov rbx,rcx
 
-  mov r9d,00000001
-  movzx r8d,byte ptr [rcx]
-  mov edx,[01498A04]
+  cmp byte ptr [ast_us],00
+  je short ast_st //ignore uniqueness
+
+  movzx ecx,byte ptr [rbx+09]
+  call 0034EF10
+  test eax,eax
+  je short ast_st //treasure was NOT opened before
+
+  xor eax,eax
+  jmp short ast_return
+
+ast_st:
+  call 00337BD0 //getCurrentLocation()
+
   lea rcx,[02236A60]
+  mov edx,eax
+  movzx r8d,byte ptr [rbx]
+  mov r9d,00000001
   call 0031D850
+
   mov eax,00000001
 
-  add rsp,18
+ast_return:
+  mov rbx,[rsp+30]
+  add rsp,28
   ret
 
 
-/* Ensures that treasures always spawn, no matter their spawn chance or uniqueness. */
+ast_us:
+  db 00
+
+
+/* Ensures that treasures always spawn, no matter their spawn chance. */
 define(ast_def,00370E24)
 assert(ast_def,E8 17 5E F1 FF)
 registersymbol(ast_def)
@@ -45,9 +72,21 @@ ast_def:
 
 unregistersymbol(ast_def)
 
+
+unregistersymbol(ast_us)
+
 dealloc(ast_newmem)
 
 </AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>46371</ID>
+              <Description>"Unique State"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>ast_us</Address>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
           <ID>43941</ID>
@@ -63,16 +102,19 @@ ase_code:
 
   cmp [rdi+32],bp
   je short ase_uncommon
+
   mov [rcx],al
 
 ase_uncommon:
   cmp [rdi+34],bp
   je short ase_rare
+
   mov [rcx+01],al
 
 ase_rare:
   cmp [rdi+36],bp
   je short ase_return
+
   mov [rcx+02],al
 
 ase_return:
@@ -96,6 +138,7 @@ ase_def:
 
 unregistersymbol(ase_def)
 
+
 dealloc(ase_newmem)
 
 </AssemblerScript>
@@ -108,11 +151,12 @@ dealloc(ase_newmem)
 alloc(fmpr_newmem,1024)
 
 fmpr_newmem:
+fmpr_code:
   //originalcode
   movd xmm6,[rax]
   cvtdq2ps xmm6,xmm6
 
-  mulss xmm6,[0139800C] //additive speed mode multiplier
+  mulss xmm6,[0139800C] //speed mode multiplier
   jmp fmpr_ret
 
 
@@ -122,7 +166,7 @@ assert(fmpr_def,66 0F 6E 30 0F 5B F6)
 registersymbol(fmpr_def)
 
 fmpr_def:
-  jmp fmpr_newmem
+  jmp fmpr_code
   nop 02
 fmpr_ret:
 
@@ -132,6 +176,9 @@ fmpr_def:
   db 66 0F 6E 30 0F 5B F6
 
 unregistersymbol(fmpr_def)
+
+
+dealloc(fmpr_newmem)
 
 </AssemblerScript>
         </CheatEntry>
@@ -143,6 +190,7 @@ unregistersymbol(fmpr_def)
 alloc(ffs_newmem,1024)
 
 ffs_newmem:
+ffs_code:
   mov edi,edx
   call 003A1C30 //getCurrentLocationType()
   mov edx,edi
@@ -158,7 +206,7 @@ assert(ffs_def,0F 1F 44 00 00)
 registersymbol(ffs_def)
 
 ffs_def:
-  jmp ffs_newmem
+  jmp ffs_code
 
 
 [disable]
@@ -201,7 +249,7 @@ unregistersymbol(fkbp_def)
           <Description>"Forced Xbox Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use XBOX button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+/* Forces the game to always use XBOX button prompts. */
 define(fxbbp_def,002CF0BE)
 assert(fxbbp_def,83 F8 02)
 registersymbol(fxbbp_def)
@@ -225,7 +273,7 @@ unregistersymbol(fxbbp_def)
           <Description>"Forced PS Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use PS button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+/* Forces the game to always use PS button prompts. */
 define(fpsbp_def,002CF0BE)
 assert(fpsbp_def,83 F8 02)
 registersymbol(fpsbp_def)
@@ -318,7 +366,7 @@ registersymbol(lsr7_def)
 lsr7_def:
   //cmp ax,10
   cmp eax,eax
-  nop 2
+  nop 02
 
 
 /* Party leader in battle. */
@@ -390,6 +438,7 @@ unregistersymbol(lsr_def)
 alloc(nmbrosc_newmem,1024)
 
 nmbrosc_newmem:
+nmbrosc_code:
   push rsi
   movzx edi,word ptr [rbx+06]
   movzx esi,byte ptr [rbx+4E]
@@ -409,7 +458,7 @@ assert(nmbrosc_def,E8 E3 1D FF FF)
 registersymbol(nmbrosc_def)
 
 nmbrosc_def:
-  jmp nmbrosc_newmem
+  jmp nmbrosc_code
 nmbrosc_ret:
 
 
@@ -421,6 +470,116 @@ unregistersymbol(nmbrosc_def)
 
 
 dealloc(nmbrosc_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>46372</ID>
+          <Description>"No Overhead Party HP Bars"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+define(nophpb_def,002E717A)
+assert(nophpb_def,8B 05 24 2E E5 00 2B 05 0E 2E E5 00)
+registersymbol(nophpb_def)
+
+nophpb_def:
+  //mov eax,[01139FA4]
+  //sub eax,[01139F94]
+  xor eax,eax
+  nop 0A
+
+
+define(nophpb2_def,002E71AC)
+assert(nophpb2_def,03 15 E2 2D E5 00)
+registersymbol(nophpb2_def)
+
+nophpb2_def:
+  //add edx,[01139F94]
+  nop 06
+
+
+[disable]
+nophpb2_def:
+  db 03 15 E2 2D E5 00
+
+unregistersymbol(nfahpb2_def)
+
+
+nophpb_def:
+  db 8B 05 24 2E E5 00 2B 05 0E 2E E5 00
+
+unregistersymbol(nophpb_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>46373</ID>
+          <Description>"No Overhead Foe HP Bars"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+define(nofhpb_def,002E7056)
+assert(nofhpb_def,8B 05 68 2F E5 00 2B 05 52 2F E5 00)
+registersymbol(nofhpb_def)
+
+nofhpb_def:
+  //mov eax,[01139FC4]
+  //sub eax,[01139FB4]
+  xor eax,eax
+  nop 0A
+
+
+define(nofhpb2_def,002E7088)
+assert(nofhpb2_def,03 15 26 2F E5 00)
+registersymbol(nofhpb2_def)
+
+nofhpb2_def:
+  //add edx,[01139FB4]
+  nop 06
+
+
+define(nofhpb3_def,002E70E8)
+assert(nofhpb3_def,8B 05 96 2E E5 00 2B 05 80 2E E5 00)
+registersymbol(nofhpb3_def)
+
+nofhpb3_def:
+  //mov eax,[01139F84]
+  //sub eax,[01139F74]
+  xor eax,eax
+  nop 0A
+
+
+define(nofhpb4_def,002E711A)
+assert(nofhpb4_def,03 15 54 2E E5 00)
+registersymbol(nofhpb4_def)
+
+nofhpb4_def:
+  //add edx,[01139F74]
+  nop 06
+
+
+[disable]
+nofhpb4_def:
+  db 03 15 54 2E E5 00
+
+unregistersymbol(nofhpb4_def)
+
+
+nofhpb3_def:
+  db 8B 05 96 2E E5 00 2B 05 80 2E E5 00
+
+unregistersymbol(nofhpb3_def)
+
+
+nofhpb2_def:
+  db 03 15 26 2F E5 00
+
+unregistersymbol(nofhpb2_def)
+
+
+nofhpb_def:
+  db 8B 05 68 2F E5 00 2B 05 52 2F E5 00
+
+unregistersymbol(nofhpb_def)
 
 </AssemblerScript>
         </CheatEntry>
@@ -546,31 +705,34 @@ unregistersymbol(nsm_def)
 alloc(ntr_newmem,1024)
 
 ntr_newmem:
+ntr_code:
   cmp ecx,00002000 //teleport stone
-  jne short ntr_originalcode
-  mov eax,00000063
-  ret
+  jne short ntr_oc
 
-ntr_originalcode:
-  sub rsp,28
-  xor edx,edx
+  mov eax,00000063
+  jmp short ntr_return
+
+ntr_oc:
+  call 0032CCD0 //getContentCount(contentId)
+
+ntr_return:
   jmp ntr_ret
 
 
 /* Skips the item count check for teleport stones and sets it to 99 instead. */
-define(ntr_def,0034ECB0)
-assert(ntr_def,48 83 EC 28 33 D2)
+define(ntr_def,0034ECB6)
+assert(ntr_def,E8 15 E0 FD FF)
 registersymbol(ntr_def)
 
 ntr_def:
-  jmp ntr_newmem
-  nop
+  //call 0032CCD0
+  jmp ntr_code
 ntr_ret:
 
 
 [disable]
 ntr_def:
-  db 48 83 EC 28 33 D2
+  db E8 15 E0 FD FF
 
 unregistersymbol(ntr_def)
 
@@ -653,7 +815,8 @@ phpmpbg_def:
 unregistersymbol(phpmpbg_def)
 
 
-dealloc(phpmpbg_newmem,1024)
+dealloc(phpmpbg_newmem)
+
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
@@ -767,26 +930,53 @@ unregistersymbol(sfa_def)
         <CheatEntry>
           <ID>43936</ID>
           <Description>"Always Spawn Treasures"</Description>
+          <Options moHideChildren="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
 alloc(ast_newmem,1024)
 
+label(ast_us)
+registersymbol(ast_us)
+
 ast_newmem:
 ast_code:
-  sub rsp,18
+  mov [rsp+08],rbx
+  sub rsp,28
+  mov rbx,rcx
 
-  mov r9d,00000001
-  movzx r8d,byte ptr [rcx]
-  mov edx,[021654C4]
+  cmp byte ptr [ast_us],00
+  je short ast_st //ignore uniqueness
+
+  movzx ecx,byte ptr [rbx+09]
+  call 0032AA60
+  test eax,eax
+  je short ast_st //treasure was NOT opened before
+
+  xor eax,eax
+  jmp short ast_return
+
+ast_st:
+  call 003148F0 //getCurrentLocation()
+
   lea rcx,[02EC3E60]
+  mov edx,eax
+  movzx r8d,byte ptr [rbx]
+  mov r9d,00000001
   call 002FB430
+
   mov eax,00000001
 
-  add rsp,18
+ast_return:
+  mov rbx,[rsp+30]
+  add rsp,28
   ret
 
 
-/* Ensures that treasures always spawn, no matter their spawn chance or uniqueness. */
+ast_us:
+  db 00
+
+
+/* Ensures that treasures always spawn, no matter their spawn chance. */
 define(ast_def,00354454)
 assert(ast_def,E8 57 38 F1 FF)
 registersymbol(ast_def)
@@ -802,9 +992,21 @@ ast_def:
 
 unregistersymbol(ast_def)
 
+
+unregistersymbol(ast_us)
+
 dealloc(ast_newmem)
 
 </AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>46370</ID>
+              <Description>"Unique State"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>ast_us</Address>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
           <ID>43935</ID>
@@ -820,16 +1022,19 @@ ase_code:
 
   cmp [rdi+32],bp
   je short ase_uncommon
+
   mov [rcx],al
 
 ase_uncommon:
   cmp [rdi+34],bp
   je short ase_rare
+
   mov [rcx+01],al
 
 ase_rare:
   cmp [rdi+36],bp
   je short ase_return
+
   mov [rcx+02],al
 
 ase_return:
@@ -853,6 +1058,7 @@ ase_def:
 
 unregistersymbol(ase_def)
 
+
 dealloc(ase_newmem)
 
 </AssemblerScript>
@@ -865,6 +1071,7 @@ dealloc(ase_newmem)
 alloc(fmpr_newmem,1024)
 
 fmpr_newmem:
+fmpr_code:
   //originalcode
   movd xmm6,[rax]
   cvtdq2ps xmm6,xmm6
@@ -879,7 +1086,7 @@ assert(fmpr_def,66 0F 6E 30 0F 5B F6)
 registersymbol(fmpr_def)
 
 fmpr_def:
-  jmp fmpr_newmem
+  jmp fmpr_code
   nop 02
 fmpr_ret:
 
@@ -889,6 +1096,9 @@ fmpr_def:
   db 66 0F 6E 30 0F 5B F6
 
 unregistersymbol(fmpr_def)
+
+
+dealloc(fmpr_newmem)
 
 </AssemblerScript>
         </CheatEntry>
@@ -900,6 +1110,7 @@ unregistersymbol(fmpr_def)
 alloc(ffs_newmem,1024)
 
 ffs_newmem:
+ffs_code:
   mov edi,edx
   call 00377700 //getCurrentLocationType()
   mov edx,edi
@@ -915,7 +1126,7 @@ assert(ffs_def,66 0F 1F 84 00 00 00 00 00)
 registersymbol(ffs_def)
 
 ffs_def:
-  jmp ffs_newmem
+  jmp ffs_code
   nop 04
 
 
@@ -959,7 +1170,7 @@ unregistersymbol(fkbp_def)
           <Description>"Forced Xbox Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use XBOX button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+/* Forces the game to always use XBOX button prompts. */
 define(fxbbp_def,002AEC1F)
 assert(fxbbp_def,83 F8 02)
 registersymbol(fxbbp_def)
@@ -983,7 +1194,7 @@ unregistersymbol(fxbbp_def)
           <Description>"Forced PS Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use PS button prompts, Forces the game to always use keyboard button prompts, as long as no controller is active. */
+/* Forces the game to always use PS button prompts. */
 define(fpsbp_def,002AEC1F)
 assert(fpsbp_def,83 F8 02)
 registersymbol(fpsbp_def)
@@ -1076,7 +1287,7 @@ registersymbol(lsr7_def)
 lsr7_def:
   //cmp ax,10
   cmp eax,eax
-  nop 2
+  nop 02
 
 
 /* Party leader in battle. */
@@ -1148,6 +1359,7 @@ unregistersymbol(lsr_def)
 alloc(nmbrosc_newmem,1024)
 
 nmbrosc_newmem:
+nmbrosc_code:
   test rdi,rdi
   je short nmbrosc_return
 
@@ -1173,7 +1385,7 @@ assert(nmbrosc_def,E8 18 01 00 00)
 registersymbol(nmbrosc_def)
 
 nmbrosc_def:
-  jmp nmbrosc_newmem
+  jmp nmbrosc_code
 nmbrosc_ret:
 
 
@@ -1185,6 +1397,116 @@ unregistersymbol(nmbrosc_def)
 
 
 dealloc(nmbrosc_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>32858</ID>
+          <Description>"No Overhead Party HP Bars"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+define(nophpb_def,002C60DA)
+assert(nophpb_def,8B 05 34 6E B4 01 2B 05 1E 6E B4 01)
+registersymbol(nophpb_def)
+
+nophpb_def:
+  //mov eax,[01E0CF14]
+  //sub eax,[01E0CF04]
+  xor eax,eax
+  nop 0A
+
+
+define(nophpb2_def,002C610C)
+assert(nophpb2_def,03 15 F2 6D B4 01)
+registersymbol(nophpb2_def)
+
+nophpb2_def:
+  //add edx,[01E0CF04]
+  nop 06
+
+
+[disable]
+nophpb2_def:
+  db 03 15 F2 6D B4 01
+
+unregistersymbol(nfahpb2_def)
+
+
+nophpb_def:
+  db 8B 05 34 6E B4 01 2B 05 1E 6E B4 01
+
+unregistersymbol(nophpb_def)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29055</ID>
+          <Description>"No Overhead Foe HP Bars"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+define(nofhpb_def,002C5FB6)
+assert(nofhpb_def,8B 05 78 6F B4 01 2B 05 62 6F B4 01)
+registersymbol(nofhpb_def)
+
+nofhpb_def:
+  //mov eax,[01E0CF34]
+  //sub eax,[01E0CF24]
+  xor eax,eax
+  nop 0A
+
+
+define(nofhpb2_def,002C5FE8)
+assert(nofhpb2_def,03 15 36 6F B4 01)
+registersymbol(nofhpb2_def)
+
+nofhpb2_def:
+  //add edx,[01E0CF24]
+  nop 06
+
+
+define(nofhpb3_def,002C6048)
+assert(nofhpb3_def,8B 05 A6 6E B4 01 2B 05 90 6E B4 01)
+registersymbol(nofhpb3_def)
+
+nofhpb3_def:
+  //mov eax,[01E0CEF4]
+  //sub eax,[01E0CEE4]
+  xor eax,eax
+  nop 0A
+
+
+define(nofhpb4_def,002C607A)
+assert(nofhpb4_def,03 15 64 6E B4 01)
+registersymbol(nofhpb4_def)
+
+nofhpb4_def:
+  //add edx,[01E0CEE4]
+  nop 06
+
+
+[disable]
+nofhpb4_def:
+  db 03 15 64 6E B4 01
+
+unregistersymbol(nofhpb4_def)
+
+
+nofhpb3_def:
+  db 8B 05 A6 6E B4 01 2B 05 90 6E B4 01
+
+unregistersymbol(nofhpb3_def)
+
+
+nofhpb2_def:
+  db 03 15 36 6F B4 01
+
+unregistersymbol(nofhpb2_def)
+
+
+nofhpb_def:
+  db 8B 05 78 6F B4 01 2B 05 62 6F B4 01
+
+unregistersymbol(nofhpb_def)
 
 </AssemblerScript>
         </CheatEntry>
@@ -1310,31 +1632,34 @@ unregistersymbol(nsm_def)
 alloc(ntr_newmem,1024)
 
 ntr_newmem:
+ntr_code:
   cmp ecx,00002000 //teleport stone
-  jne short ntr_originalcode
-  mov eax,00000063
-  ret
+  jne short ntr_oc
 
-ntr_originalcode:
-  sub rsp,28
-  xor edx,edx
+  mov eax,00000063
+  jmp short ntr_return
+
+ntr_oc:
+  call 00309FB0 //getContentCount(contentId)
+
+ntr_return:
   jmp ntr_ret
 
 
 /* Skips the item count check for teleport stones and sets it to 99 instead. */
-define(ntr_def,0032A860)
-assert(ntr_def,48 83 EC 28 33 D2)
+define(ntr_def,0032A866)
+assert(ntr_def,E8 45 F7 FD FF)
 registersymbol(ntr_def)
 
 ntr_def:
-  jmp ntr_newmem
-  nop
+  //call 00309FB0
+  jmp ntr_code
 ntr_ret:
 
 
 [disable]
 ntr_def:
-  db 48 83 EC 28 33 D2
+  db E8 45 F7 FD FF
 
 unregistersymbol(ntr_def)
 
@@ -1417,7 +1742,8 @@ phpmpbg_def:
 unregistersymbol(phpmpbg_def)
 
 
-dealloc(phpmpbg_newmem,1024)
+dealloc(phpmpbg_newmem)
+
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
@@ -1525,6 +1851,7 @@ unregistersymbol(sfa_def)
   </CheatEntries>
   <UserdefinedSymbols/>
   <Comments>Made by Xeavin.
+
 Link to repository:
 https://github.com/Xeavin/The-Insurgents-Graveyard
 </Comments>

@@ -4,9 +4,10 @@ local originalBytes = {0x66, 0x0F, 0x1F, 0x84, 0x00, 0x00, 0x00, 0x00, 0x00}
 local code =
 [[
   jmp %ffs_code%
+  nop 0x04
 ]]
 
-local ffs_newmem = memory.assemble(
+memory.assemble(
 [[
 ffs_code:
   mov edi,edx
@@ -14,8 +15,8 @@ ffs_code:
   mov edx,edi
 
   test eax,eax
-  je 0x00307F45
-  jmp 0x00307F3C
+  je short 0x00307F45
+  jmp short 0x00307F3C
 
 ]], {"ffs_code"})
 
@@ -35,6 +36,8 @@ if not (memory.assemble(code, codePointer)) then
 end
 
 local function onExit()
+  memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

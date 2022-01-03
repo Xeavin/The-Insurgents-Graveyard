@@ -1,25 +1,25 @@
 --Made by Xeavin
-local codePointer = 0x0032A860
-local originalBytes = {0x48, 0x83, 0xEC, 0x28, 0x33, 0xD2}
+local codePointer = 0x0032A866
+local originalBytes = {0xE8, 0x45, 0xF7, 0xFD, 0xFF}
 local code =
 [[
   jmp %ntr_code%
-  nop
 ]]
 
-local ntr_newmem = memory.assemble(
+memory.assemble(
 [[
 ntr_code:
   cmp ecx,0x00002000
-  jne short ntr_originalcode
+  jne short ntr_oc
+
   mov eax,0x00000063
-  ret
+  jmp short ntr_return
 
-ntr_originalcode:
-  sub rsp,0x28
-  xor edx,edx
+ntr_oc:
+  call 0x00309FB0
 
-  jmp 0x0032A866
+ntr_return:
+  jmp 0x0032A86B
 
 ]], {"ntr_code"})
 
@@ -42,4 +42,5 @@ local function onExit()
   memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

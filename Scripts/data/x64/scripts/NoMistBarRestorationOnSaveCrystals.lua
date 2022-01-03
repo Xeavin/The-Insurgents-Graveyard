@@ -6,7 +6,7 @@ local code =
   jmp %nmbrosc_code%
 ]]
 
-local nmbrosc_newmem = memory.assemble(
+memory.assemble(
 [[
 nmbrosc_code:
   test rdi,rdi
@@ -48,4 +48,5 @@ local function onExit()
   memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

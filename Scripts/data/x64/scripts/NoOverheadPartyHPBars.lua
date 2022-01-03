@@ -1,37 +1,36 @@
 --Made by Xeavin
 local codePointers = {
-0x00253C89,
-0x00253D9E}
+0x002C60DA,
+0x002C610C}
 
 local originalBytes = {
-{0x80, 0x3D, 0xC0, 0xEA, 0xE3, 0x01, 0x03},
-{0x80, 0x3D, 0xAB, 0xE9, 0xE3, 0x01, 0x03}}
+{0x8B, 0x05, 0x34, 0x6E, 0xB4, 0x01, 0x2B, 0x05, 0x1E, 0x6E, 0xB4, 0x01},
+{0x03, 0x15, 0xF2, 0x6D, 0xB4, 0x01}}
 
 local codes = {
 [[
-  test esp,esp
-  nop 0x05
+  xor eax,eax
+  nop 0x0A
 ]],
 [[
-  test esp,esp
-  nop 0x05
+  nop 0x06
 ]]}
 
-print("No Overlay Map (NOM): Applying patch.")
+print("No Overhead Party HP Bars (NOPHPB): Applying patch.")
 for i = 1, #codePointers do
   local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
   if (#readBytes ~= #originalBytes[i]) then
-    print("NOM: Couldn't read from memory.")
+    print("NOPHPB: Couldn't read from memory.")
     return
   elseif (table.concat(readBytes) ~= table.concat(originalBytes[i])) then
-    print("NOM: Unexpected values, aborting.")
+    print("NOPHPB: Unexpected values, aborting.")
     return
   end
 end
 
 for i = 1, #codePointers do
   if not (memory.assemble(codes[i], codePointers[i])) then
-    print("NOM: Couldn't write to memory.")
+    print("NOPHPB: Couldn't write to memory.")
     return
   end
 end
@@ -39,4 +38,5 @@ end
 local function onExit()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

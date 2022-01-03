@@ -1,14 +1,14 @@
-# The Insurgent's Graveyard v1.3.0
+# The Insurgent's Graveyard
 A collection of FFXII scripts that were either requested and created for others, or are too niche to be included in any of my other mods.
 
 ## Scripts
 The following features are available both as a LUA script (Steam) and as a cheat table (Steam/Microsoft Store). The former works automatically once installed where as the latter needs to be run manually after every game launch. Choose whatever works best for you.
 
 ### Always Spawn Treasures
-Treasure always spawn, no matter their spawn chance or uniqueness.
+Treasure always spawn, no matter their spawn chance or uniqueness (configurable).
 
 ### Always Steal Everything
-Stealing is always successful and includes all items. However, it is still limited to once per foe. For continuous stealing, you can use the *Unlimited Stealable Foe Items* feature of [The Insurgent's Bountiful Bundle](https://www.nexusmods.com/finalfantasy12/mods/185)
+Stealing is always successful, includes all items, but is still limited to once per foe. For continuous stealing, you can use the **Unlimited Stealable Foe Items** feature of [The Insurgent's Bountiful Bundle](https://www.nexusmods.com/finalfantasy12/mods/185)
 
 ### Fixed MP Regeneration
 Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.
@@ -37,11 +37,17 @@ Disables the overlay map which would displayed in the middle of the screen after
 ### No Mist Bar Restoration On Save Crystals
 Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.
 
+### No Overhead Party HP Bars
+Removes the overhead HP bars of the party.
+
+### No Overhead Foe HP Bars
+Removes the overhead HP bars of foes (incl. friendly).
+
 ### No Sounds
 Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.
 
 ### No Speed Mode
-Disables the ability to toggle the speed mode feature of the game which may be of some use for the speedrunning community.
+Disables the ability to toggle the speed mode feature of the game.
 
 ### No Teleport Requirement
 Teleport stones are no longer required when using the save crystal teleport option.
@@ -55,41 +61,48 @@ Enables the ability to remove any targeted party members from the party.
 ### Summons For All
 Allows a summon to be acquired by all characters.
 
-## Requirements
-
-### LUA Scripts
-- [External File Loader v1.1.1+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files)
-- [LUA Loader v1.1.13+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files)
-
-### Cheat Table
-- [Cheat Engine v7.2+](https://github.com/cheat-engine/cheat-engine/releases)
-
 ## Installation/Updating/Uninstallation (LUA Scripts)
 
 ### Installation
-1. Download the repository as an archive with *Code -> Download ZIP* (green button at the top right) and extract it.
-2. Move the .lua file into the **game/x64/scripts/** directory.
+1. Download, install and open the [Vortex Mod Manager](https://www.nexusmods.com/site/mods/1?tab=files)﻿.
+2. Select **Games** on the left side bar, search for **Final Fantasy XII** and select **Manage**.
+3. Download and install both the [External File Loader v1.1.1+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files) and [LUA Loader v1.1.13+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files).
+4. Select **Releases** on the right sidebar of this page.
+5. Under **Assets**, click on **TheInsurgentsGraveyard.7z** to download the mod archive.
+6. Select **Mods** on the left side bar of Vortex and drag and drop the downloaded **TheInsurgentsGraveyard.7z** archive into the **Drop File(s)** field.
+7. Click on the dropdown arrow in the **Actions** column next to row with **TheInsurgentsGraveyard.7z** as the mod name and select **Install**.
+8. Choose whichever features you would like to install, click on finish once you are done and **make sure to watch out for any notification in the top right corner to both deploy and enable the mod.**
 
 ### Updating
-1. Update requirements if necessary.
-2. Follow the installation instructions from above.
+1. Uninstall the mod via the **Vortex Mod Manager**.
+2. Download and install the mod as shown in the installation instructions above.
+3. Update mod requirements if necessary.
+4. Reapply any changes done to the configuration file.
 
 ### Uninstallation
-1. Remove the .lua file from the **game/x64/scripts/** directory.
+Uninstall the mod via the **Vortex Mod Manager**.
 
 ## How To Use (Cheat Table):
-1. Download the repository as an archive with *Code -> Download ZIP* (green button at the top right) and extract it.
-2. Open the game and Cheat Engine.
-3. Click on *File* -> *Open Process*.
-4. Select the game and click on *Open*.
-5. Click on *File* -> *Open*.
-6. Navigate to the cheat table and click on *Open*.
+1. Download and install [Cheat Engine v7.2+](https://github.com/cheat-engine/cheat-engine#download).
+2. Select **Releases** on the right sidebar of this page.
+3. Under **Assets**, click on **TheInsurgentsGraveyard.CT** to download the mod as a cheat table.
+4. Open the game and Cheat Engine.
+5. Click on **File** -> **Open Process**.
+6. Select the game and click on **Open**.
+7. Click on **File** -> **Open**.
+8. Navigate to the cheat table and click on **Open**.
 
 ## Compatibility
 - Fully compatible with other mods, unless they incorporate the same changes which should be mentioned in their description.
 - Fully compatible with all game languages.
 - Fully compatible with existing saves (no new game required).
 - Only compatible with either the latest Steam (1.0.4.0) or Microsoft Store (1.0.1.0) version of the game.
+
+## Configuration
+Some scripts come with configurable parameters that are saved into its specific config file (e.g. **{game}/x64/scripts/config/AlwaysSpawnTreasuresConfig.lua**). You can modify this configuration file with any text editor if needed. For example, if you would like the **Always Spawn Treasures** script to not affect unique treasures, then you can do so by changing **uniqueState** in the config file from **false** to **true**.
+
+## Notes
+- Instead of using both the **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option, you can also just use the **No Overhead HP Bars** option of [The Insurgent's Vision](https://www.nexusmods.com/finalfantasy12/mods/220).
 
 ## Troubleshooting
 Before reporting any bugs, please ensure that your issue is even tied to this mod. This means disabling every other mod first and testing whether or not your issue still persists. If it does, feel free to contact me on the modding community discord [here](https://discord.gg/UBrP6ME).
@@ -105,3 +118,32 @@ Before reporting any bugs, please ensure that your issue is even tied to this mo
 - All files in this repository belong to the author, or are from free-to-use modders resources.
 - You must get permission from me before you upload my files to other sites.
 - You must get permission from me before you are allowed to use, modify or convert my files.
+
+## Changelog
+
+### v1.4.0
+- Added a fomod that allows easy installation of all scripts via a mod manager (e.g. Vortex).
+- **Always Spawn Treasures:** Added a config that allows toggling whether or not unique treasures should be able to spawn more than once.
+- Added a **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option (remnants from The Insurgent's Vision v1.2.0).
+- Cleaned up a few scripts.
+
+### v1.3.0
+- Added an **Always Spawn Treasures** option.
+- Added an **Always Steal Everything** option.
+- Minor formatting fixes.
+
+### v1.2.0
+- All scripts are now also available as a cheat table.
+- Added support for the Microsoft Store version of the game (cheat table only).
+- **No Overlay Map:** Is now actually disabled where as before only its toggle was.
+- **No Speed Mode:** Is now actually disabled where as before only its toggle was.
+- **Camera Position:** Removed because it is incompatible with The Insurgent's Vision, whose Free Camera option is superior to this script anyway.
+- Cleaned up a few scripts.
+
+### v1.1.0
+- Added a **Summons For All** option.
+- **No Restoration On Save Crystals:** Fixed an issue where cutscenes that initiated a boss fight wouldn't restore any HP, MP, etc.
+- **No Restoration On Save Crystals:** Fixed an issue where certain cutscenes could trigger a crash.
+
+### v1.0.0
+- Initial release.
