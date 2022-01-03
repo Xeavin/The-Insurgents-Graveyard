@@ -7,7 +7,7 @@ local code =
   nop
 ]]
 
-local ase_newmem = memory.assemble(
+memory.assemble(
 [[
 ase_code:
   lea rcx,[0x02AEE04C]
@@ -15,16 +15,19 @@ ase_code:
 
   cmp [rdi+0x32],bp
   je short ase_uncommon
+
   mov [rcx],al
 
 ase_uncommon:
   cmp [rdi+0x34],bp
   je short ase_rare
+
   mov [rcx+0x01],al
 
 ase_rare:
   cmp [rdi+0x36],bp
   je short ase_return
+
   mov [rcx+0x02],al
 
 ase_return:
@@ -51,4 +54,5 @@ local function onExit()
   memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

@@ -1,28 +1,29 @@
 --Made by Xeavin
-local codePointer = 0x002AEC1F
-local originalBytes = {0x83, 0xF8, 0x02}
+local codePointer = 0x00197780
+local originalBytes = {0x0F, 0xB6, 0x41, 0x38}
 local code =
 [[
-  test esp,esp
-  nop
+  xor eax,eax
+  nop 0x02
 ]]
 
-print("Forced XBox Button Prompts(FXBBP): Applying patch.")
+print("Forced Keyboard Button Prompts (FKBP): Applying patch.")
 local readBytes = memory.readArray(codePointer, #originalBytes)
 if (#readBytes ~= #originalBytes) then
-  print("FXBBP: Couldn't read from memory.")
+  print("FKBP: Couldn't read from memory.")
   return
 elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("FXBBP: Unexpected values, aborting.")
+  print("FKBP: Unexpected values, aborting.")
   return
 end
 
 if not (memory.assemble(code, codePointer)) then
-  print("FXBBP: Couldn't write to memory.")
+  print("FKBP: Couldn't write to memory.")
   return
 end
 
 local function onExit()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)

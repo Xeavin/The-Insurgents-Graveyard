@@ -7,7 +7,7 @@ local code =
   nop 0x02
 ]]
 
-local fmpr_newmem = memory.assemble(
+memory.assemble(
 [[
 fmpr_code:
   movd xmm6,[rax]
@@ -37,4 +37,5 @@ local function onExit()
   memory.unregisterAllSymbols()
   collectgarbage()
 end
+
 event.registerEventAsync("exit", onExit)
