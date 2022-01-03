@@ -122,6 +122,7 @@ Before reporting any bugs, please ensure that your issue is even tied to this mo
 ## Changelog
 
 ### v1.4.0
+- Added a fomod that allows easy installation of all scripts via a mod manager (e.g. Vortex).
 - **Always Spawn Treasures:** Added a config that allows toggling whether or not unique treasures should be able to spawn more than once.
 - Added a **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option (remnants from The Insurgent's Vision v1.2.0).
 - Cleaned up a few scripts.
