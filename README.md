@@ -38,7 +38,7 @@ Disables the overlay map which would displayed in the middle of the screen after
 Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.
 
 ### No Overhead Party HP Bars
-Removes the overhead HP bars of the party
+Removes the overhead HP bars of the party.
 
 ### No Overhead Foe HP Bars
 Removes the overhead HP bars of foes (incl. friendly).
