@@ -6,7 +6,7 @@ local code =
   jmp %nmbrosc_code%
 ]]
 
-memory.assemble(
+local assemblies =
 [[
 nmbrosc_code:
   test rdi,rdi
@@ -26,20 +26,22 @@ nmbrosc_code:
 
 nmbrosc_return:
   jmp 0x0030F488
+]]
 
-]], {"nmbrosc_code"})
+local symbols = {
+  "nmbrosc_code"
+}
+
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("NMBROSC: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(assemblies, symbols)
+  memory.assemble(code, codePointer)
+end
 
 print("No Mist Bar Restoration On Save Crystals (NMBROSC): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("NMBROSC: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("NMBROSC: Unexpected values, aborting.")
-  return
-end
-
-if not (memory.assemble(code, codePointer)) then
-  print("NMBROSC: Couldn't write to memory.")
-  return
-end
+applyPatch()

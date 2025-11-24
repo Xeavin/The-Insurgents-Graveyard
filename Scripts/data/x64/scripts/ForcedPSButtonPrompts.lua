@@ -7,17 +7,15 @@ local code =
   nop
 ]]
 
-print("Forced PS Button Prompts (FPSBP): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("FPSBP: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("FPSBP: Unexpected values, aborting.")
-  return
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("FPSBP: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(code, codePointer)
 end
 
-if not (memory.assemble(code, codePointer)) then
-  print("FPSBP: Couldn't write to memory.")
-  return
-end
+print("Forced PS Button Prompts (FPSBP): Applying patch.")
+applyPatch()

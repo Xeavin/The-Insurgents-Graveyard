@@ -29,21 +29,19 @@ local codes = {
   nop 0x05
 ]]}
 
-print("Removable Targeted Party Members (RTPM): Applying patch.")
-for i = 1, #codePointers do
-  local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
-  if (#readBytes ~= #originalBytes[i]) then
-    print("RTPM: Couldn't read from memory.")
-    return
-  elseif (table.concat(readBytes) ~= table.concat(originalBytes[i])) then
-    print("RTPM: Unexpected values, aborting.")
-    return
+local function applyPatch()
+  for i = 1, #codePointers do
+    local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
+    if table.concat(readBytes) ~= table.concat(originalBytes[i]) then
+      print("RTPM: Couldn't apply patch, executable is unexpectedly modified.")
+      return
+    end
+  end
+
+  for i = 1, #codePointers do
+    memory.assemble(codes[i], codePointers[i])
   end
 end
 
-for i = 1, #codePointers do
-  if not (memory.assemble(codes[i], codePointers[i])) then
-    print("RTPM: Couldn't write to memory.")
-    return
-  end
-end
+print("Removable Targeted Party Members (RTPM): Applying patch.")
+applyPatch()

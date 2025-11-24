@@ -7,7 +7,7 @@ local code =
   nop 0x02
 ]]
 
-memory.assemble(
+local assemblies =
 [[
 fmpr_code:
   movd xmm6,[rax]
@@ -15,20 +15,22 @@ fmpr_code:
 
   mulss xmm6,[0x02064AC4]
   jmp 0x002F956A
+]]
 
-]], {"fmpr_code"})
+local symbols = {
+  "fmpr_code"
+}
+
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("FMPR: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(assemblies, symbols)
+  memory.assemble(code, codePointer)
+end
 
 print("Fixed MP Regeneration (FMPR): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("FMPR: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("FMPR: Unexpected values, aborting.")
-  return
-end
-
-if not (memory.assemble(code, codePointer)) then
-  print("FMPR: Couldn't write to memory.")
-  return
-end
+applyPatch()

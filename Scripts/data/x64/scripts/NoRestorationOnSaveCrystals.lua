@@ -7,17 +7,15 @@ local code =
   nop 0x03
 ]]
 
-print("No Restoration On Save Crystals (NROSC): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("NROSC: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("NROSC: Unexpected values, aborting.")
-  return
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("NROSC: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(code, codePointer)
 end
 
-if not (memory.assemble(code, codePointer)) then
-  print("NROSC: Couldn't write to memory.")
-  return
-end
+print("No Restoration On Save Crystals (NROSC): Applying patch.")
+applyPatch()

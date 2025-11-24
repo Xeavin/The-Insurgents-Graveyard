@@ -6,7 +6,7 @@ local code =
   jmp %ntr_code%
 ]]
 
-memory.assemble(
+local assemblies =
 [[
 ntr_code:
   cmp ecx,0x00002000
@@ -20,20 +20,22 @@ ntr_oc:
 
 ntr_return:
   jmp 0x0032A86B
+]]
 
-]], {"ntr_code"})
+local symbols = {
+  "ntr_code"
+}
+
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("NTR: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(assemblies, symbols)
+  memory.assemble(code, codePointer)
+end
 
 print("No Teleport Requirement (NTR): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("NTR: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("NTR: Unexpected values, aborting.")
-  return
-end
-
-if not (memory.assemble(code, codePointer)) then
-  print("NTR: Couldn't write to memory.")
-  return
-end
+applyPatch()

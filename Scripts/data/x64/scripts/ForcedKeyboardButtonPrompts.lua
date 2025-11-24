@@ -7,17 +7,15 @@ local code =
   nop 0x02
 ]]
 
-print("Forced Keyboard Button Prompts (FKBP): Applying patch.")
-local readBytes = memory.readArray(codePointer, #originalBytes)
-if (#readBytes ~= #originalBytes) then
-  print("FKBP: Couldn't read from memory.")
-  return
-elseif (table.concat(readBytes) ~= table.concat(originalBytes)) then
-  print("FKBP: Unexpected values, aborting.")
-  return
+local function applyPatch()
+  local readBytes = memory.readArray(codePointer, #originalBytes)
+  if table.concat(readBytes) ~= table.concat(originalBytes) then
+    print("FKBP: Couldn't apply patch, executable is unexpectedly modified.")
+    return
+  end
+
+  memory.assemble(code, codePointer)
 end
 
-if not (memory.assemble(code, codePointer)) then
-  print("FKBP: Couldn't write to memory.")
-  return
-end
+print("Forced Keyboard Button Prompts (FKBP): Applying patch.")
+applyPatch()

@@ -46,21 +46,19 @@ local codes = {
   test esp,esp
 ]]}
 
-print("Lift Story Restrictions (LSR): Applying patch.")
-for i = 1, #codePointers do
-  local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
-  if (#readBytes ~= #originalBytes[i]) then
-    print("LSR: Couldn't read from memory.")
-    return
-  elseif (table.concat(readBytes) ~= table.concat(originalBytes[i])) then
-    print("LSR: Unexpected values, aborting.")
-    return
+local function applyPatch()
+  for i = 1, #codePointers do
+    local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
+    if table.concat(readBytes) ~= table.concat(originalBytes[i]) then
+      print("LSR: Couldn't apply patch, executable is unexpectedly modified.")
+      return
+    end
+  end
+
+  for i = 1, #codePointers do
+    memory.assemble(codes[i], codePointers[i])
   end
 end
 
-for i = 1, #codePointers do
-  if not (memory.assemble(codes[i], codePointers[i])) then
-    print("LSR: Couldn't write to memory.")
-    return
-  end
-end
+print("Lift Story Restrictions (LSR): Applying patch.")
+applyPatch()
