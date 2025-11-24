@@ -8,8 +8,8 @@
 						<plugin name="Always Spawn Treasures">
 							<description>Treasure always spawn, no matter their spawn chance or uniqueness (configurable).</description>
 							<files>
-								<file source="data\x64\scripts\AlwaysSpawnTreasures.lua" destination="scripts\AlwaysSpawnTreasures.lua" priority="0" />
-								<file source="data\x64\scripts\config\AlwaysSpawnTreasuresConfig.lua" destination="scripts\config\AlwaysSpawnTreasuresConfig.lua" priority="0" />
+								<file source="data\x64\scripts\AlwaysSpawnTreasures.lua" destination="x64\scripts\AlwaysSpawnTreasures.lua" priority="0" />
+								<file source="data\x64\scripts\config\AlwaysSpawnTreasuresConfig.lua" destination="x64\scripts\config\AlwaysSpawnTreasuresConfig.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -18,7 +18,7 @@
 						<plugin name="Always Steal Everything">
 							<description>Stealing is always successful, includes all items, but is still limited to once per foe.</description>
 							<files>
-								<file source="data\x64\scripts\AlwaysStealEverything.lua" destination="scripts\AlwaysStealEverything.lua" priority="0" />
+								<file source="data\x64\scripts\AlwaysStealEverything.lua" destination="x64\scripts\AlwaysStealEverything.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -27,7 +27,7 @@
 						<plugin name="Fixed MP Regeneration">
 							<description>Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.</description>
 							<files>
-								<file source="data\x64\scripts\FixedMPRegeneration.lua" destination="scripts\FixedMPRegeneration.lua" priority="0" />
+								<file source="data\x64\scripts\FixedMPRegeneration.lua" destination="x64\scripts\FixedMPRegeneration.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -36,7 +36,7 @@
 						<plugin name="Forced Fighting Stance">
 							<description>Forces all party members into a fighting stance if they enter a location that is not a town.</description>
 							<files>
-								<file source="data\x64\scripts\ForcedFightingStance.lua" destination="scripts\ForcedFightingStance.lua" priority="0" />
+								<file source="data\x64\scripts\ForcedFightingStance.lua" destination="x64\scripts\ForcedFightingStance.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -45,7 +45,7 @@
 						<plugin name="Lift Story Restrictions">
 							<description>Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.</description>
 							<files>
-								<file source="data\x64\scripts\LiftStoryRestrictions.lua" destination="scripts\LiftStoryRestrictions.lua" priority="0" />
+								<file source="data\x64\scripts\LiftStoryRestrictions.lua" destination="x64\scripts\LiftStoryRestrictions.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -54,7 +54,7 @@
 						<plugin name="No Overhead Party HP Bars">
 							<description>Removes the overhead HP bars of the party.</description>
 							<files>
-								<file source="data\x64\scripts\NoOverheadPartyHPBars.lua" destination="scripts\NoOverheadPartyHPBars.lua" priority="0" />
+								<file source="data\x64\scripts\NoOverheadPartyHPBars.lua" destination="x64\scripts\NoOverheadPartyHPBars.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -63,7 +63,7 @@
 						<plugin name="No Overhead Foe HP Bars">
 							<description>Removes the overhead HP bars of foes (incl. friendly).</description>
 							<files>
-								<file source="data\x64\scripts\NoOverheadFoeHPBars.lua" destination="scripts\NoOverheadFoeHPBars.lua" priority="0" />
+								<file source="data\x64\scripts\NoOverheadFoeHPBars.lua" destination="x64\scripts\NoOverheadFoeHPBars.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -72,7 +72,7 @@
 						<plugin name="No Overlay Map">
 							<description>Disables the overlay map which would displayed in the middle of the screen after pressing/clicking the Tab/L3/LS key/button.</description>
 							<files>
-								<file source="data\x64\scripts\NoOverlayMap.lua" destination="scripts\NoOverlayMap.lua" priority="0" />
+								<file source="data\x64\scripts\NoOverlayMap.lua" destination="x64\scripts\NoOverlayMap.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -81,7 +81,7 @@
 						<plugin name="No Sounds">
 							<description>Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.</description>
 							<files>
-								<file source="data\x64\scripts\NoSounds.lua" destination="scripts\NoSounds.lua" priority="0" />
+								<file source="data\x64\scripts\NoSounds.lua" destination="x64\scripts\NoSounds.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -90,7 +90,7 @@
 						<plugin name="No Speed Mode">
 							<description>Disables the ability to toggle the speed mode feature of the game.</description>
 							<files>
-								<file source="data\x64\scripts\NoSpeedMode.lua" destination="scripts\NoSpeedMode.lua" priority="0" />
+								<file source="data\x64\scripts\NoSpeedMode.lua" destination="x64\scripts\NoSpeedMode.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -99,7 +99,7 @@
 						<plugin name="No Teleport Requirement">
 							<description>Teleport stones are no longer required when using the save crystal teleport option.</description>
 							<files>
-								<file source="data\x64\scripts\NoTeleportRequirement.lua" destination="scripts\NoTeleportRequirement.lua" priority="0" />
+								<file source="data\x64\scripts\NoTeleportRequirement.lua" destination="x64\scripts\NoTeleportRequirement.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -108,7 +108,7 @@
 						<plugin name="Perfect HP/MP Bonus Growth">
 							<description>Removes the randomness factor of a character's HP/MP growth when leveling up.</description>
 							<files>
-								<file source="data\x64\scripts\PerfectHPMPBonusGrowth.lua" destination="scripts\PerfectHPMPBonusGrowth.lua" priority="0" />
+								<file source="data\x64\scripts\PerfectHPMPBonusGrowth.lua" destination="x64\scripts\PerfectHPMPBonusGrowth.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -117,7 +117,7 @@
 						<plugin name="Removable Targeted Party Members">
 							<description>Enables the ability to remove any targeted party members from the party.</description>
 							<files>
-								<file source="data\x64\scripts\RemovableTargetedPartyMembers.lua" destination="scripts\RemovableTargetedPartyMembers.lua" priority="0" />
+								<file source="data\x64\scripts\RemovableTargetedPartyMembers.lua" destination="x64\scripts\RemovableTargetedPartyMembers.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -126,7 +126,7 @@
 						<plugin name="Summons For All">
 							<description>Allows a summon to be acquired by all characters.</description>
 							<files>
-								<file source="data\x64\scripts\SummonsForAll.lua" destination="scripts\SummonsForAll.lua" priority="0" />
+								<file source="data\x64\scripts\SummonsForAll.lua" destination="x64\scripts\SummonsForAll.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -139,7 +139,7 @@
 						<plugin name="No Mist Bar Restoration On Save Crystals">
 							<description>Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.</description>
 							<files>
-								<file source="data\x64\scripts\NoMistBarRestorationOnSaveCrystals.lua" destination="scripts\NoMistBarRestorationOnSaveCrystals.lua" priority="0" />
+								<file source="data\x64\scripts\NoMistBarRestorationOnSaveCrystals.lua" destination="x64\scripts\NoMistBarRestorationOnSaveCrystals.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -148,7 +148,7 @@
 						<plugin name="No Restoration On Save Crystals">
 							<description>Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects.</description>
 							<files>
-								<file source="data\x64\scripts\NoRestorationOnSaveCrystals.lua" destination="scripts\NoRestorationOnSaveCrystals.lua" priority="0" />
+								<file source="data\x64\scripts\NoRestorationOnSaveCrystals.lua" destination="x64\scripts\NoRestorationOnSaveCrystals.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -161,7 +161,7 @@
 						<plugin name="Forced Keyboard Button Prompts">
 							<description>Forces the game to always use keyboard button prompts, as long as no controller is used.</description>
 							<files>
-								<file source="data\x64\scripts\ForcedKeyboardButtonPrompts.lua" destination="scripts\ForcedKeyboardButtonPrompts.lua" priority="0" />
+								<file source="data\x64\scripts\ForcedKeyboardButtonPrompts.lua" destination="x64\scripts\ForcedKeyboardButtonPrompts.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -170,7 +170,7 @@
 						<plugin name="Forced PS Button Prompts">
 							<description>Forces the game to always use PS button prompts, regardless of the type of controller used.</description>
 							<files>
-								<file source="data\x64\scripts\ForcedPSButtonPrompts.lua" destination="scripts\ForcedPSButtonPrompts.lua" priority="0" />
+								<file source="data\x64\scripts\ForcedPSButtonPrompts.lua" destination="x64\scripts\ForcedPSButtonPrompts.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
@@ -179,7 +179,7 @@
 						<plugin name="Forced Xbox Button Prompts">
 							<description>Forces the game to always use XBOX button prompts, regardless of the type of controller used.</description>
 							<files>
-								<file source="data\x64\scripts\ForcedXboxButtonPrompts.lua" destination="scripts\ForcedXboxButtonPrompts.lua" priority="0" />
+								<file source="data\x64\scripts\ForcedXboxButtonPrompts.lua" destination="x64\scripts\ForcedXboxButtonPrompts.lua" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>
