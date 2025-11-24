@@ -822,7 +822,6 @@ dealloc(phpmpbg_newmem)
         <CheatEntry>
           <ID>43383</ID>
           <Description>"Removable Targeted Party Members"</Description>
-          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
 /* Retrieves a party members targeted state as "not targeted". */
@@ -1749,7 +1748,6 @@ dealloc(phpmpbg_newmem)
         <CheatEntry>
           <ID>43414</ID>
           <Description>"Removable Targeted Party Members"</Description>
-          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
 /* Retrieves a party members targeted state as "not targeted". */
