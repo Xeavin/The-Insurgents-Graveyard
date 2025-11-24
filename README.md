@@ -115,9 +115,7 @@ Before reporting any bugs, please ensure that your issue is even tied to this mo
 - [The Insurgent's Toolkit](https://www.nexusmods.com/finalfantasy12/mods/160)
 
 ## Permissions
-- All files in this repository belong to the author, or are from free-to-use modders resources.
-- You must get permission from me before you upload my files to other sites.
-- You must get permission from me before you are allowed to use, modify or convert my files.
+You are not allowed to upload, modify, convert, or use any of these assets, except for personal use, which must not be shared, distributed, or incorporated into any public use under any circumstances.
 
 ## Changelog
 
