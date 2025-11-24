@@ -55,9 +55,6 @@ Removes the randomness factor of a character's HP/MP growth when leveling up (mo
 ### Removeable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 
-### Summons For All
-Allows a summon to be acquired by all characters.
-
 ## Installation/Updating/Uninstallation (LUA Scripts)
 
 ### Installation

@@ -114,15 +114,6 @@
 								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Summons For All">
-							<description>Allows a summon to be acquired by all characters.</description>
-							<files>
-								<file source="data\x64\scripts\SummonsForAll.lua" destination="x64\scripts\SummonsForAll.lua" priority="0" />
-							</files>
-							<typeDescriptor>
-								<type name="Optional"/>
-							</typeDescriptor>
-						</plugin>
 					</plugins>
 				</group>
 				<group name="Save Crystal Restoration" type="SelectAtMostOne">

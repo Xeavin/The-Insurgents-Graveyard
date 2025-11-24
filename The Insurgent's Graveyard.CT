@@ -856,30 +856,6 @@ unregistersymbol(rtpm_def)
 
 </AssemblerScript>
         </CheatEntry>
-        <CheatEntry>
-          <ID>43384</ID>
-          <Description>"Summons For All"</Description>
-          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-/* Allows a summon to be acquired by all characters. */
-define(sfa_def,003479A8)
-assert(sfa_def,85 C0)
-registersymbol(sfa_def)
-
-sfa_def:
-  //test eax,eax
-  cmp eax,eax
-
-
-[disable]
-sfa_def:
-  db 85 C0
-
-unregistersymbol(sfa_def)
-
-</AssemblerScript>
-        </CheatEntry>
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
@@ -1740,30 +1716,6 @@ rtpm_def:
   db F7 06 00 00 02 00
 
 unregistersymbol(rtpm_def)
-
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>43415</ID>
-          <Description>"Summons For All"</Description>
-          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-/* Allows a summon to be acquired by all characters. */
-define(sfa_def,00323E33)
-assert(sfa_def,85 C0)
-registersymbol(sfa_def)
-
-sfa_def:
-  //test eax,eax
-  cmp eax,eax
-
-
-[disable]
-sfa_def:
-  db 85 C0
-
-unregistersymbol(sfa_def)
 
 </AssemblerScript>
         </CheatEntry>
