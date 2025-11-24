@@ -5,16 +5,6 @@
 			<optionalFileGroups order="Explicit">
 				<group name="Features" type="SelectAny">
 					<plugins order="Explicit">
-						<plugin name="Always Spawn Treasures">
-							<description>Treasure always spawn, no matter their spawn chance or uniqueness (configurable).</description>
-							<files>
-								<file source="data\x64\scripts\AlwaysSpawnTreasures.lua" destination="x64\scripts\AlwaysSpawnTreasures.lua" priority="0" />
-								<file source="data\x64\scripts\config\AlwaysSpawnTreasuresConfig.lua" destination="x64\scripts\config\AlwaysSpawnTreasuresConfig.lua" priority="0" />
-							</files>
-							<typeDescriptor>
-								<type name="Optional"/>
-							</typeDescriptor>
-						</plugin>
 						<plugin name="Always Steal Everything">
 							<description>Stealing is always successful, includes all items, but is still limited to once per foe.</description>
 							<files>

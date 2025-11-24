@@ -4,9 +4,6 @@ A collection of FFXII scripts that were either requested and created for others,
 ## Scripts
 The following features are available both as a LUA script (Steam) and as a cheat table (Steam/Microsoft Store). The former works automatically once installed where as the latter needs to be run manually after every game launch. Choose whatever works best for you.
 
-### Always Spawn Treasures
-Treasure always spawn, no matter their spawn chance or uniqueness (configurable).
-
 ### Always Steal Everything
 Stealing is always successful, includes all items, but is still limited to once per foe. For continuous stealing, you can use the **Unlimited Stealable Foe Items** feature of [The Insurgent's Bountiful Bundle](https://www.nexusmods.com/finalfantasy12/mods/185)
 
@@ -68,7 +65,6 @@ Enables the ability to remove any targeted party members from the party.
 1. Uninstall the mod via the **Vortex Mod Manager**.
 2. Download and install the mod as shown in the installation instructions above.
 3. Update mod requirements if necessary.
-4. Reapply any changes done to the configuration file.
 
 ### Uninstallation
 Uninstall the mod via the **Vortex Mod Manager**.
@@ -88,9 +84,6 @@ Uninstall the mod via the **Vortex Mod Manager**.
 - Fully compatible with all game languages.
 - Fully compatible with existing saves (no new game required).
 - Only compatible with either the latest Steam (1.0.4.0) or Microsoft Store (1.0.1.0) version of the game.
-
-## Configuration
-Some scripts come with configurable parameters that are saved into its specific config file (e.g. **{game}/x64/scripts/config/AlwaysSpawnTreasuresConfig.lua**). You can modify this configuration file with any text editor if needed. For example, if you would like the **Always Spawn Treasures** script to not affect unique treasures, then you can do so by changing **uniqueState** in the config file from **false** to **true**.
 
 ## Notes
 - Instead of using both the **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option, you can also just use the **No Overhead HP Bars** option of [The Insurgent's Vision](https://www.nexusmods.com/finalfantasy12/mods/220).
