@@ -5,15 +5,6 @@
 			<optionalFileGroups order="Explicit">
 				<group name="Features" type="SelectAny">
 					<plugins order="Explicit">
-						<plugin name="Always Steal Everything">
-							<description>Stealing is always successful, includes all items, but is still limited to once per foe.</description>
-							<files>
-								<file source="data\x64\scripts\AlwaysStealEverything.lua" destination="x64\scripts\AlwaysStealEverything.lua" priority="0" />
-							</files>
-							<typeDescriptor>
-								<type name="Optional"/>
-							</typeDescriptor>
-						</plugin>
 						<plugin name="Fixed MP Regeneration">
 							<description>Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.</description>
 							<files>

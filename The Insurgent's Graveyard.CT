@@ -8,61 +8,6 @@
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-          <ID>43941</ID>
-          <Description>"Always Steal Everything"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-alloc(ase_newmem,1024)
-
-ase_newmem:
-ase_code:
-  lea rcx,[01E57890]
-  mov eax,00000001
-
-  cmp [rdi+32],bp
-  je short ase_uncommon
-
-  mov [rcx],al
-
-ase_uncommon:
-  cmp [rdi+34],bp
-  je short ase_rare
-
-  mov [rcx+01],al
-
-ase_rare:
-  cmp [rdi+36],bp
-  je short ase_return
-
-  mov [rcx+02],al
-
-ase_return:
-  jmp 003B84FC
-
-
-/* Ensures that stealing is always successful and includes all items. */
-define(ase_def,003B8369)
-assert(ase_def,0F 84 C4 00 00 00)
-registersymbol(ase_def)
-
-ase_def:
-  //je 003B8433
-  jmp ase_code
-  nop
-
-
-[disable]
-ase_def:
-  db 0F 84 C4 00 00 00
-
-unregistersymbol(ase_def)
-
-
-dealloc(ase_newmem)
-
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
           <ID>43370</ID>
           <Description>"Fixed MP Regeneration"</Description>
           <VariableType>Auto Assembler Script</VariableType>
@@ -705,61 +650,6 @@ unregistersymbol(rtpm_def)
       <Options moHideChildren="1"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
-        <CheatEntry>
-          <ID>43935</ID>
-          <Description>"Always Steal Everything"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-alloc(ase_newmem,1024)
-
-ase_newmem:
-ase_code:
-  lea rcx,[02AEE04C]
-  mov eax,00000001
-
-  cmp [rdi+32],bp
-  je short ase_uncommon
-
-  mov [rcx],al
-
-ase_uncommon:
-  cmp [rdi+34],bp
-  je short ase_rare
-
-  mov [rcx+01],al
-
-ase_rare:
-  cmp [rdi+36],bp
-  je short ase_return
-
-  mov [rcx+02],al
-
-ase_return:
-  jmp 0039058A
-
-
-/* Ensures that stealing is always successful and includes all items. */
-define(ase_def,003904A9)
-assert(ase_def,0F 84 F0 00 00 00)
-registersymbol(ase_def)
-
-ase_def:
-  //je 0039059F
-  jmp ase_code
-  nop
-
-
-[disable]
-ase_def:
-  db 0F 84 F0 00 00 00
-
-unregistersymbol(ase_def)
-
-
-dealloc(ase_newmem)
-
-</AssemblerScript>
-        </CheatEntry>
         <CheatEntry>
           <ID>43401</ID>
           <Description>"Fixed MP Regeneration"</Description>
