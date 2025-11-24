@@ -265,17 +265,29 @@ alloc(nmbrosc_newmem,1024)
 
 nmbrosc_newmem:
 nmbrosc_code:
+  push rbx
+  push rdi
   push rsi
-  movzx edi,word ptr [rbx+06]
-  movzx esi,byte ptr [rbx+4E]
   sub rsp,20
-  call 00323A40 //originalcode
-  add rsp,20
-  mov [rbx+4E],sil
-  mov [rbx+06],di
-  pop rsi
 
-  jmp nmbrosc_ret
+  test rcx,rcx
+  je short nmbrosc_return
+
+  mov rdi,rcx
+  movzx ebx,word ptr [rdi+06] //mist charges
+  movzx esi,byte ptr [rdi+4E] //current mist bars
+
+  call 00323A40 //modify mist charges
+
+  mov [rdi+4E],sil
+  mov [rdi+06],bx
+
+nmbrosc_return:
+  add rsp,20
+  pop rsi
+  pop rdi
+  pop rbx
+  ret
 
 
 /* Restores current mist bars and mist charge after the healall() vm call. */
@@ -284,8 +296,7 @@ assert(nmbrosc_def,E8 E3 1D FF FF)
 registersymbol(nmbrosc_def)
 
 nmbrosc_def:
-  jmp nmbrosc_code
-nmbrosc_ret:
+  call nmbrosc_code
 
 
 [disable]
@@ -293,7 +304,6 @@ nmbrosc_def:
   db E8 E3 1D FF FF
 
 unregistersymbol(nmbrosc_def)
-
 
 dealloc(nmbrosc_newmem)
 
@@ -908,23 +918,30 @@ alloc(nmbrosc_newmem,1024)
 
 nmbrosc_newmem:
 nmbrosc_code:
-  test rdi,rdi
+  push rbx
+  push rdi
+  push rsi
+  sub rsp,20
+
+  test rcx,rcx
   je short nmbrosc_return
 
-  push rbx
-  push rsi
-  movzx ebx,word ptr [rdi+06]
-  movzx esi,byte ptr [rdi+4E]
-  sub rsp,18
-  call 0030F5A0 //originalcode
-  add rsp,18
+  mov rdi,rcx
+  movzx ebx,word ptr [rdi+06] //mist charges
+  movzx esi,byte ptr [rdi+4E] //current mist bars
+
+  call 0030F5A0 //set current mp and mist charges to max
+
   mov [rdi+4E],sil
   mov [rdi+06],bx
-  pop rsi
   pop rbx
 
 nmbrosc_return:
-  jmp nmbrosc_ret
+  add rsp,20
+  pop rsi
+  pop rdi
+  pop rbx
+  ret
 
 
 /* Restores current mist bars and mist charge after the healall() vm call. */
@@ -933,8 +950,7 @@ assert(nmbrosc_def,E8 18 01 00 00)
 registersymbol(nmbrosc_def)
 
 nmbrosc_def:
-  jmp nmbrosc_code
-nmbrosc_ret:
+  call nmbrosc_code
 
 
 [disable]
@@ -942,7 +958,6 @@ nmbrosc_def:
   db E8 18 01 00 00
 
 unregistersymbol(nmbrosc_def)
-
 
 dealloc(nmbrosc_newmem)
 
