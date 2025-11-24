@@ -209,48 +209,34 @@ lsr8_def:
 lsr8_def:
   db 85 C0
 
-unregistersymbol(lsr8_def)
-
-
 lsr7_def:
   db 66 83 F8 10
-
-unregistersymbol(lsr7_def)
-
 
 lsr6_def:
   db 85 C0
 
-unregistersymbol(lsr6_def)
-
-
 lsr5_def:
   db 85 C0
-
-unregistersymbol(lsr5_def)
-
 
 lsr4_def:
   db 85 C0
 
-unregistersymbol(lsr4_def)
-
-
 lsr3_def:
   db 85 C0
-
-unregistersymbol(lsr3_def)
-
 
 lsr2_def:
   db 85 C0
 
-unregistersymbol(lsr2_def)
-
-
 lsr_def:
   db 85 C0
 
+unregistersymbol(lsr8_def)
+unregistersymbol(lsr7_def)
+unregistersymbol(lsr6_def)
+unregistersymbol(lsr5_def)
+unregistersymbol(lsr4_def)
+unregistersymbol(lsr3_def)
+unregistersymbol(lsr2_def)
 unregistersymbol(lsr_def)
 
 </AssemblerScript>
@@ -338,12 +324,10 @@ nophpb2_def:
 nophpb2_def:
   db 03 15 E2 2D E5 00
 
-unregistersymbol(nfahpb2_def)
-
-
 nophpb_def:
   db 8B 05 24 2E E5 00 2B 05 0E 2E E5 00
 
+unregistersymbol(nfahpb2_def)
 unregistersymbol(nophpb_def)
 
 </AssemblerScript>
@@ -397,24 +381,18 @@ nofhpb4_def:
 nofhpb4_def:
   db 03 15 54 2E E5 00
 
-unregistersymbol(nofhpb4_def)
-
-
 nofhpb3_def:
   db 8B 05 96 2E E5 00 2B 05 80 2E E5 00
-
-unregistersymbol(nofhpb3_def)
-
 
 nofhpb2_def:
   db 03 15 26 2F E5 00
 
-unregistersymbol(nofhpb2_def)
-
-
 nofhpb_def:
   db 8B 05 68 2F E5 00 2B 05 52 2F E5 00
 
+unregistersymbol(nofhpb4_def)
+unregistersymbol(nofhpb3_def)
+unregistersymbol(nofhpb2_def)
 unregistersymbol(nofhpb_def)
 
 </AssemblerScript>
@@ -449,12 +427,10 @@ nom2_def:
 nom2_def:
   db 80 3D D5 36 15 01 03
 
-unregistersymbol(nom2_def)
-
-
 nom_def:
   db 80 3D E0 37 15 01 03
 
+unregistersymbol(nom2_def)
 unregistersymbol(nom_def)
 
 </AssemblerScript>
@@ -572,7 +548,6 @@ ntr_def:
 
 unregistersymbol(ntr_def)
 
-
 dealloc(ntr_newmem)
 
 </AssemblerScript>
@@ -630,24 +605,18 @@ rtpm4_def:
 rtpm4_def:
   db 41 F7 06 00 00 02 00
 
-unregistersymbol(rtpm4_def)
-
-
 rtpm3_def:
   db 0F BA E0 11
-
-unregistersymbol(rtpm3_def)
-
 
 rtpm2_def:
   db F7 03 00 00 02 00
 
-unregistersymbol(rtpm2_def)
-
-
 rtpm_def:
   db F7 06 00 00 02 00
 
+unregistersymbol(rtpm4_def)
+unregistersymbol(rtpm3_def)
+unregistersymbol(rtpm2_def)
 unregistersymbol(rtpm_def)
 
 </AssemblerScript>
@@ -693,7 +662,6 @@ fmpr_def:
   db 66 0F 6E 30 0F 5B F6
 
 unregistersymbol(fmpr_def)
-
 
 dealloc(fmpr_newmem)
 
@@ -862,48 +830,34 @@ lsr8_def:
 lsr8_def:
   db 85 C0
 
-unregistersymbol(lsr8_def)
-
-
 lsr7_def:
   db 66 83 F8 10
-
-unregistersymbol(lsr7_def)
-
 
 lsr6_def:
   db 85 D2
 
-unregistersymbol(lsr6_def)
-
-
 lsr5_def:
   db 85 D2
-
-unregistersymbol(lsr5_def)
-
 
 lsr4_def:
   db 85 C9
 
-unregistersymbol(lsr4_def)
-
-
 lsr3_def:
   db 85 C9
-
-unregistersymbol(lsr3_def)
-
 
 lsr2_def:
   db 85 C9
 
-unregistersymbol(lsr2_def)
-
-
 lsr_def:
   db 85 C9
 
+unregistersymbol(lsr8_def)
+unregistersymbol(lsr7_def)
+unregistersymbol(lsr6_def)
+unregistersymbol(lsr5_def)
+unregistersymbol(lsr4_def)
+unregistersymbol(lsr3_def)
+unregistersymbol(lsr2_def)
 unregistersymbol(lsr_def)
 
 </AssemblerScript>
@@ -934,7 +888,6 @@ nmbrosc_code:
 
   mov [rdi+4E],sil
   mov [rdi+06],bx
-  pop rbx
 
 nmbrosc_return:
   add rsp,20
@@ -992,12 +945,10 @@ nophpb2_def:
 nophpb2_def:
   db 03 15 F2 6D B4 01
 
-unregistersymbol(nfahpb2_def)
-
-
 nophpb_def:
   db 8B 05 34 6E B4 01 2B 05 1E 6E B4 01
 
+unregistersymbol(nfahpb2_def)
 unregistersymbol(nophpb_def)
 
 </AssemblerScript>
@@ -1051,24 +1002,18 @@ nofhpb4_def:
 nofhpb4_def:
   db 03 15 64 6E B4 01
 
-unregistersymbol(nofhpb4_def)
-
-
 nofhpb3_def:
   db 8B 05 A6 6E B4 01 2B 05 90 6E B4 01
-
-unregistersymbol(nofhpb3_def)
-
 
 nofhpb2_def:
   db 03 15 36 6F B4 01
 
-unregistersymbol(nofhpb2_def)
-
-
 nofhpb_def:
   db 8B 05 78 6F B4 01 2B 05 62 6F B4 01
 
+unregistersymbol(nofhpb4_def)
+unregistersymbol(nofhpb3_def)
+unregistersymbol(nofhpb2_def)
 unregistersymbol(nofhpb_def)
 
 </AssemblerScript>
@@ -1103,12 +1048,10 @@ nom2_def:
 nom2_def:
   db 80 3D AB E9 E3 01 03
 
-unregistersymbol(nom2_def)
-
-
 nom_def:
   db 80 3D C0 EA E3 01 03
 
+unregistersymbol(nom2_def)
 unregistersymbol(nom_def)
 
 </AssemblerScript>
@@ -1226,7 +1169,6 @@ ntr_def:
 
 unregistersymbol(ntr_def)
 
-
 dealloc(ntr_newmem)
 
 </AssemblerScript>
@@ -1284,24 +1226,18 @@ rtpm4_def:
 rtpm4_def:
   db 41 F7 06 00 00 02 00
 
-unregistersymbol(rtpm4_def)
-
-
 rtpm3_def:
   db F7 06 00 00 02 00
-
-unregistersymbol(rtpm3_def)
-
 
 rtpm2_def:
   db F7 03 00 00 02 00
 
-unregistersymbol(rtpm2_def)
-
-
 rtpm_def:
   db F7 06 00 00 02 00
 
+unregistersymbol(rtpm4_def)
+unregistersymbol(rtpm3_def)
+unregistersymbol(rtpm2_def)
 unregistersymbol(rtpm_def)
 
 </AssemblerScript>
