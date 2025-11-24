@@ -20,9 +20,3 @@ if not (memory.assemble(code, codePointer)) then
   print("NSM: Couldn't write to memory.")
   return
 end
-
-local function onExit()
-  collectgarbage()
-end
-
-event.registerEventAsync("exit", onExit)

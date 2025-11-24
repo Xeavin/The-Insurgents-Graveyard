@@ -43,10 +43,3 @@ if not (memory.assemble(code, codePointer)) then
   print("NMBROSC: Couldn't write to memory.")
   return
 end
-
-local function onExit()
-  memory.unregisterAllSymbols()
-  collectgarbage()
-end
-
-event.registerEventAsync("exit", onExit)

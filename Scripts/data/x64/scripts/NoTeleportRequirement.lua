@@ -37,10 +37,3 @@ if not (memory.assemble(code, codePointer)) then
   print("NTR: Couldn't write to memory.")
   return
 end
-
-local function onExit()
-  memory.unregisterAllSymbols()
-  collectgarbage()
-end
-
-event.registerEventAsync("exit", onExit)

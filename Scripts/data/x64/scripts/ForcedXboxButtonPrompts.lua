@@ -21,9 +21,3 @@ if not (memory.assemble(code, codePointer)) then
   print("FXBBP: Couldn't write to memory.")
   return
 end
-
-local function onExit()
-  collectgarbage()
-end
-
-event.registerEventAsync("exit", onExit)
