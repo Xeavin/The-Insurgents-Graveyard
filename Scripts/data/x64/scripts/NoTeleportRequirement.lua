@@ -38,4 +38,10 @@ local function applyPatch()
 end
 
 print("No Teleport Requirement (NTR): Applying patch.")
+local minVer = {1, 7, 1}
+if not (checkMinVersion and checkMinVersion(minVer[1], minVer[2], minVer[3])) then
+  print("NTR: Couldn't apply patch, LUA Loader v" .. minVer[1] .. "." .. minVer[2] .. "." .. minVer[3] .. " or higher required.")
+  return
+end
+
 applyPatch()
