@@ -96,15 +96,6 @@
 								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Perfect HP/MP Bonus Growth">
-							<description>Removes the randomness factor of a character's HP/MP growth when leveling up.</description>
-							<files>
-								<file source="data\x64\scripts\PerfectHPMPBonusGrowth.lua" destination="x64\scripts\PerfectHPMPBonusGrowth.lua" priority="0" />
-							</files>
-							<typeDescriptor>
-								<type name="Optional"/>
-							</typeDescriptor>
-						</plugin>
 						<plugin name="Removable Targeted Party Members">
 							<description>Enables the ability to remove any targeted party members from the party.</description>
 							<files>

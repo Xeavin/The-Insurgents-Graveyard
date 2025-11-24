@@ -49,9 +49,6 @@ Disables the ability to toggle the speed mode feature of the game.
 ### No Teleport Requirement
 Teleport stones are no longer required when using the save crystal teleport option.
 
-### Perfect HP/MP Bonus Growth
-Removes the randomness factor of a character's HP/MP growth when leveling up (more information [here](https://finalfantasy.fandom.com/wiki/Final_Fantasy_XII_stats#cite_ref-ff12_1-1))
-
 ### Removeable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 
