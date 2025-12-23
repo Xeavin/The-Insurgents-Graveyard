@@ -13,9 +13,6 @@ Stealing is always successful, includes all items, but is still limited to once 
 ### Fixed MP Regeneration
 Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.
 
-### Forced Fighting Stance
-Forces all party members into a fighting stance if they enter a location that is not a town.
-
 ### Forced Keyboard Button Prompts
 Forces the game to always use keyboard button prompts, as long as no controller is used.
 

@@ -183,44 +183,6 @@ dealloc(fmpr_newmem)
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>43371</ID>
-          <Description>"Forced Fighting Stance"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-alloc(ffs_newmem,1024)
-
-ffs_newmem:
-ffs_code:
-  mov edi,edx
-  call 003A1C30 //getCurrentLocationType()
-  mov edx,edi
-
-  test eax,eax
-  je 0032AC45 //is a town
-  jmp 0032AC3C
-
-
-/* Forces all party members outside towns into a fighting stance. */
-define(ffs_def,0032AC0B)
-assert(ffs_def,0F 1F 44 00 00)
-registersymbol(ffs_def)
-
-ffs_def:
-  jmp ffs_code
-
-
-[disable]
-ffs_def:
-  db 0F 1F 44 00 00
-
-unregistersymbol(ffs_def)
-
-
-dealloc(ffs_newmem)
-
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
           <ID>43372</ID>
           <Description>"Forced Keyboard Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
@@ -1098,45 +1060,6 @@ unregistersymbol(fmpr_def)
 
 
 dealloc(fmpr_newmem)
-
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>43402</ID>
-          <Description>"Forced Fighting Stance"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[enable]
-alloc(ffs_newmem,1024)
-
-ffs_newmem:
-ffs_code:
-  mov edi,edx
-  call 00377700 //getCurrentLocationType()
-  mov edx,edi
-
-  test eax,eax
-  je 00307F45 //is a town
-  jmp 00307F3C
-
-
-/* Forces all party members outside towns into a fighting stance. */
-define(ffs_def,00307F07)
-assert(ffs_def,66 0F 1F 84 00 00 00 00 00)
-registersymbol(ffs_def)
-
-ffs_def:
-  jmp ffs_code
-  nop 04
-
-
-[disable]
-ffs_def:
-  db 66 0F 1F 84 00 00 00 00 00
-
-unregistersymbol(ffs_def)
-
-
-dealloc(ffs_newmem)
 
 </AssemblerScript>
         </CheatEntry>

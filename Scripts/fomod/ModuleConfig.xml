@@ -33,15 +33,6 @@
 								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
-						<plugin name="Forced Fighting Stance">
-							<description>Forces all party members into a fighting stance if they enter a location that is not a town.</description>
-							<files>
-								<file source="data\x64\scripts\ForcedFightingStance.lua" destination="x64\scripts\ForcedFightingStance.lua" priority="0" />
-							</files>
-							<typeDescriptor>
-								<type name="Optional"/>
-							</typeDescriptor>
-						</plugin>
 						<plugin name="Lift Story Restrictions">
 							<description>Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.</description>
 							<files>
