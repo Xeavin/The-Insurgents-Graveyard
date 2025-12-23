@@ -48,7 +48,7 @@ Teleport stones are no longer required when using the save crystal teleport opti
 ### Removable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 
-## Installation/Updating/Uninstallation (LUA Scripts)
+## Installation/Updating/Uninstallation (Lua Scripts)
 
 ### Installation
 1. Download, install and open the [Vortex Mod Manager](https://www.nexusmods.com/site/mods/1?tab=files)﻿.
@@ -58,7 +58,7 @@ Enables the ability to remove any targeted party members from the party.
 5. Under **Assets**, click on **TheInsurgentsGraveyard.7z** to download the mod archive.
 6. Select **Mods** on the left side bar of Vortex and drag and drop the downloaded **TheInsurgentsGraveyard.7z** archive into the **Drop File(s)** field.
 7. Click on the dropdown arrow in the **Actions** column next to row with **TheInsurgentsGraveyard.7z** as the mod name and select **Install**.
-8. Choose whichever features you would like to install, click on finish once you are done and **make sure to watch out for any notification in the top right corner to both deploy and enable the mod.**
+8. Choose which features you would like to install, click on finish once you are done and **make sure to watch out for any notification in the top right corner to both deploy and enable the mod.**
 
 ### Updating
 1. Uninstall the mod via the **Vortex Mod Manager**.
