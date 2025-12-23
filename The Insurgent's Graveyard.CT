@@ -24,7 +24,7 @@ fmpr_code:
   jmp fmpr_ret
 
 
-/* Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
+/* multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
 define(fmpr_def,0031B883)
 assert(fmpr_def,66 0F 6E 30 0F 5B F6)
 registersymbol(fmpr_def)
@@ -51,7 +51,7 @@ dealloc(fmpr_newmem)
           <Description>"Forced Keyboard Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use keyboard button prompts, as long as no controller is used. */
+/* forces the game to always use keyboard button prompts, as long as no controller is used. */
 define(fkbp_def,001A78C0)
 assert(fkbp_def,0F B6 41 38)
 registersymbol(fkbp_def)
@@ -75,7 +75,7 @@ unregistersymbol(fkbp_def)
           <Description>"Forced Xbox Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use XBOX button prompts. */
+/* forces the game to always use XBOX button prompts. */
 define(fxbbp_def,002CF0BE)
 assert(fxbbp_def,83 F8 02)
 registersymbol(fxbbp_def)
@@ -99,7 +99,7 @@ unregistersymbol(fxbbp_def)
           <Description>"Forced PS Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use PS button prompts. */
+/* forces the game to always use PS button prompts. */
 define(fpsbp_def,002CF0BE)
 assert(fpsbp_def,83 F8 02)
 registersymbol(fpsbp_def)
@@ -122,9 +122,9 @@ unregistersymbol(fpsbp_def)
           <ID>43416</ID>
           <Description>"Lift Story Restrictions"</Description>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>/* Ignores the requirements in "mapjumpgroupflagrom.bin". */
+          <AssemblerScript>/* ignores the requirements in "mapjumpgroupflagrom.bin". */
 [enable]
-/* Party menu. */
+/* party menu. */
 define(lsr_def,002A1E46)
 assert(lsr_def,85 C0)
 registersymbol(lsr_def)
@@ -134,7 +134,7 @@ lsr_def:
   test esp,esp
 
 
-/* Equipment menu. */
+/* equipment menu. */
 define(lsr2_def,002A1E72)
 assert(lsr2_def,85 C0)
 registersymbol(lsr2_def)
@@ -144,7 +144,7 @@ lsr2_def:
   test esp,esp
 
 
-/* Licenses menu. */
+/* licenses menu. */
 define(lsr3_def,002A1E8F)
 assert(lsr3_def,85 C0)
 registersymbol(lsr3_def)
@@ -154,7 +154,7 @@ lsr3_def:
   test esp,esp
 
 
-/* Gambits menu. */
+/* gambits menu. */
 define(lsr4_def,002A1EAC)
 assert(lsr4_def,85 C0)
 registersymbol(lsr4_def)
@@ -164,7 +164,7 @@ lsr4_def:
   test esp,esp
 
 
-/* World map. */
+/* world map. */
 define(lsr5_def,002A1ED2)
 assert(lsr5_def,85 C0)
 registersymbol(lsr5_def)
@@ -174,7 +174,7 @@ lsr5_def:
   test esp,esp
 
 
-/* Clan primer. */
+/* clan primer. */
 define(lsr6_def,002A1F07)
 assert(lsr6_def,85 C0)
 registersymbol(lsr6_def)
@@ -184,7 +184,7 @@ lsr6_def:
   test esp,esp
 
 
-/* Minimap. */
+/* minimap. */
 define(lsr7_def,002725F9)
 assert(lsr7_def,66 83 F8 10)
 registersymbol(lsr7_def)
@@ -195,7 +195,7 @@ lsr7_def:
   nop 02
 
 
-/* Party leader in battle. */
+/* party leader in battle. */
 define(lsr8_def,00272904)
 assert(lsr8_def,85 C0)
 registersymbol(lsr8_def)
@@ -290,7 +290,7 @@ nmbrosc_return:
   ret
 
 
-/* Restores current mist bars and mist charge after the healall() vm call. */
+/* restores current mist bars and mist charges after the healall() vm call. */
 define(nmbrosc_def,00331C58)
 assert(nmbrosc_def,E8 E3 1D FF FF)
 registersymbol(nmbrosc_def)
@@ -424,7 +424,7 @@ unregistersymbol(nofhpb_def)
           <Description>"No Overlay Map"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Acts as if the overlay map is already open. */
+/* acts as if the overlay map is already open. */
 define(nom_def,002724A9)
 assert(nom_def,80 3D E0 37 15 01 03)
 registersymbol(nom_def)
@@ -465,7 +465,7 @@ unregistersymbol(nom_def)
           <Options moHideChildren="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
+/* touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
 define(nrosc_def,0037EA6F)
 assert(nrosc_def,B8 07 00 00 00)
 registersymbol(nrosc_def)
@@ -489,7 +489,7 @@ unregistersymbol(nrosc_def)
           <Description>"No Sounds"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Retrieves every sound volume as 0. */
+/* retrieves every sound volume as 0. */
 define(ns_def,0083FA7F)
 assert(ns_def,F3 44 0F 10 A3 00 01 00 00)
 registersymbol(ns_def)
@@ -513,7 +513,7 @@ unregistersymbol(ns_def)
           <Description>"No Speed Mode"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Skips the process of setting the speed mode state completely. */
+/* skips the process of setting the speed mode state completely. */
 define(nsm_def,00248B45)
 assert(nsm_def,E8 E6 47 13 00)
 registersymbol(nsm_def)
@@ -549,13 +549,13 @@ ntr_code:
   jmp short ntr_return
 
 ntr_oc:
-  call 0032CCD0 //getContentCount(contentId)
+  call 0032CCD0 //get content count (contentId)
 
 ntr_return:
   jmp ntr_ret
 
 
-/* Skips the item count check for teleport stones and sets it to 99 instead. */
+/* skips the item count check for teleport stones and sets it to 99 instead. */
 define(ntr_def,0034ECB6)
 assert(ntr_def,E8 15 E0 FD FF)
 registersymbol(ntr_def)
@@ -582,7 +582,7 @@ dealloc(ntr_newmem)
           <Description>"Removable Targeted Party Members"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Retrieves a party members targeted state as "not targeted". */
+/* retrieves a party members targeted state as "not targeted". */
 define(rtpm_def,002A5152)
 assert(rtpm_def,F7 06 00 00 02 00)
 registersymbol(rtpm_def)
@@ -593,7 +593,7 @@ rtpm_def:
   nop 04
 
 
-/* Removes the "Targeted characters cannot be removed from the party." message from the menu. */
+/* removes the "Targeted characters cannot be removed from the party." message from the menu. */
 define(rtpm2_def,002A6472)
 assert(rtpm2_def,F7 03 00 00 02 00)
 registersymbol(rtpm2_def)
@@ -604,7 +604,7 @@ rtpm2_def:
   nop 04
 
 
-/* Removes the "locked" icon of targeted party members in the party menu. */
+/* removes the "locked" icon of targeted party members in the party menu. */
 define(rtpm3_def,002A492A)
 assert(rtpm3_def,0F BA E0 11)
 registersymbol(rtpm3_def)
@@ -615,7 +615,7 @@ rtpm3_def:
   nop 02
 
 
-/* Removes the red name highlight of targeted party members in the party menu. */
+/* removes the red name highlight of targeted party members in the party menu. */
 define(rtpm4_def,002A4531)
 assert(rtpm4_def,41 F7 06 00 00 02 00)
 registersymbol(rtpm4_def)
@@ -677,7 +677,7 @@ fmpr_code:
   jmp fmpr_ret
 
 
-/* Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
+/* multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. */
 define(fmpr_def,002F9563)
 assert(fmpr_def,66 0F 6E 30 0F 5B F6)
 registersymbol(fmpr_def)
@@ -704,7 +704,7 @@ dealloc(fmpr_newmem)
           <Description>"Forced Keyboard Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use keyboard button prompts, as long as no controller is used. */
+/* forces the game to always use keyboard button prompts, as long as no controller is used. */
 define(fkbp_def,00197780)
 assert(fkbp_def,0F B6 41 38)
 registersymbol(fkbp_def)
@@ -728,7 +728,7 @@ unregistersymbol(fkbp_def)
           <Description>"Forced Xbox Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use XBOX button prompts. */
+/* forces the game to always use XBOX button prompts. */
 define(fxbbp_def,002AEC1F)
 assert(fxbbp_def,83 F8 02)
 registersymbol(fxbbp_def)
@@ -752,7 +752,7 @@ unregistersymbol(fxbbp_def)
           <Description>"Forced PS Button Prompts"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Forces the game to always use PS button prompts. */
+/* forces the game to always use PS button prompts. */
 define(fpsbp_def,002AEC1F)
 assert(fpsbp_def,83 F8 02)
 registersymbol(fpsbp_def)
@@ -775,9 +775,9 @@ unregistersymbol(fpsbp_def)
           <ID>43406</ID>
           <Description>"Lift Story Restrictions"</Description>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>/* Ignores the requirements in "mapjumpgroupflagrom.bin". */
+          <AssemblerScript>/* ignores the requirements in "mapjumpgroupflagrom.bin". */
 [enable]
-/* Party menu. */
+/* party menu. */
 define(lsr_def,00281B85)
 assert(lsr_def,85 C9)
 registersymbol(lsr_def)
@@ -787,7 +787,7 @@ lsr_def:
   test esp,esp
 
 
-/* Equipment menu. */
+/* equipment menu. */
 define(lsr2_def,00281BB8)
 assert(lsr2_def,85 C9)
 registersymbol(lsr2_def)
@@ -797,7 +797,7 @@ lsr2_def:
   test esp,esp
 
 
-/* Licenses menu. */
+/* licenses menu. */
 define(lsr3_def,00281BDC)
 assert(lsr3_def,85 C9)
 registersymbol(lsr3_def)
@@ -807,7 +807,7 @@ lsr3_def:
   test esp,esp
 
 
-/* Gambits menu. */
+/* gambits menu. */
 define(lsr4_def,00281C00)
 assert(lsr4_def,85 C9)
 registersymbol(lsr4_def)
@@ -817,7 +817,7 @@ lsr4_def:
   test esp,esp
 
 
-/* World map. */
+/* world map. */
 define(lsr5_def,00281C2D)
 assert(lsr5_def,85 D2)
 registersymbol(lsr5_def)
@@ -827,7 +827,7 @@ lsr5_def:
   test esp,esp
 
 
-/* Clan primer. */
+/* clan primer. */
 define(lsr6_def,00281C69)
 assert(lsr6_def,85 D2)
 registersymbol(lsr6_def)
@@ -837,7 +837,7 @@ lsr6_def:
   test esp,esp
 
 
-/* Minimap. */
+/* minimap. */
 define(lsr7_def,00253DD6)
 assert(lsr7_def,66 83 F8 10)
 registersymbol(lsr7_def)
@@ -848,7 +848,7 @@ lsr7_def:
   nop 02
 
 
-/* Party leader in battle. */
+/* party leader in battle. */
 define(lsr8_def,002540B4)
 assert(lsr8_def,85 C0)
 registersymbol(lsr8_def)
@@ -944,7 +944,7 @@ nmbrosc_return:
   ret
 
 
-/* Restores current mist bars and mist charge after the healall() vm call. */
+/* restores current mist bars and mist charges after the healall() vm call. */
 define(nmbrosc_def,0030F483)
 assert(nmbrosc_def,E8 18 01 00 00)
 registersymbol(nmbrosc_def)
@@ -1078,7 +1078,7 @@ unregistersymbol(nofhpb_def)
           <Description>"No Overlay Map"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Acts as if the overlay map is already open. */
+/* acts as if the overlay map is already open. */
 define(nom_def,00253C89)
 assert(nom_def,80 3D C0 EA E3 01 03)
 registersymbol(nom_def)
@@ -1119,7 +1119,7 @@ unregistersymbol(nom_def)
           <Options moHideChildren="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
+/* touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects. */
 define(nrosc_def,00359C8F)
 assert(nrosc_def,B8 07 00 00 00)
 registersymbol(nrosc_def)
@@ -1143,7 +1143,7 @@ unregistersymbol(nrosc_def)
           <Description>"No Sounds"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Retrieves every sound volume as 0. */
+/* retrieves every sound volume as 0. */
 define(ns_def,007E0E7C)
 assert(ns_def,F3 44 0F 10 A3 00 01 00 00)
 registersymbol(ns_def)
@@ -1167,7 +1167,7 @@ unregistersymbol(ns_def)
           <Description>"No Speed Mode"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Skips the process of setting the speed mode state completely. */
+/* skips the process of setting the speed mode state completely. */
 define(nsm_def,0022AD02)
 assert(nsm_def,E8 49 D8 12 00)
 registersymbol(nsm_def)
@@ -1209,7 +1209,7 @@ ntr_return:
   jmp ntr_ret
 
 
-/* Skips the item count check for teleport stones and sets it to 99 instead. */
+/* skips the item count check for teleport stones and sets it to 99 instead. */
 define(ntr_def,0032A866)
 assert(ntr_def,E8 45 F7 FD FF)
 registersymbol(ntr_def)
@@ -1236,7 +1236,7 @@ dealloc(ntr_newmem)
           <Description>"Removable Targeted Party Members"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[enable]
-/* Retrieves a party members targeted state as "not targeted". */
+/* retrieves a party members targeted state as "not targeted". */
 define(rtpm_def,00284CF2)
 assert(rtpm_def,F7 06 00 00 02 00)
 registersymbol(rtpm_def)
@@ -1247,7 +1247,7 @@ rtpm_def:
   nop 04
 
 
-/* Removes the "Targeted characters cannot be removed from the party." message from the menu. */
+/* removes the "Targeted characters cannot be removed from the party." message from the menu. */
 define(rtpm2_def,00285E12)
 assert(rtpm2_def,F7 03 00 00 02 00)
 registersymbol(rtpm2_def)
@@ -1258,7 +1258,7 @@ rtpm2_def:
   nop 04
 
 
-/* Removes the "locked" icon of targeted party members in the party menu. */
+/* removes the "locked" icon of targeted party members in the party menu. */
 define(rtpm3_def,0028463A)
 assert(rtpm3_def,F7 06 00 00 02 00)
 registersymbol(rtpm3_def)
@@ -1269,7 +1269,7 @@ rtpm3_def:
   nop 04
 
 
-/* Removes the red name highlight of targeted party members in the party menu. */
+/* removes the red name highlight of targeted party members in the party menu. */
 define(rtpm4_def,0028427C)
 assert(rtpm4_def,41 F7 06 00 00 02 00)
 registersymbol(rtpm4_def)
