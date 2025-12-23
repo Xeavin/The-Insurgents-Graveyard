@@ -3,7 +3,7 @@
 	<installSteps order="Explicit">
 		<installStep name="Features Selection">
 			<optionalFileGroups order="Explicit">
-				<group name="Main Features" type="SelectAny">
+				<group name="Features" type="SelectAny">
 					<plugins order="Explicit">
 						<plugin name="Always Spawn Treasures">
 							<description>Treasure always spawn, no matter their spawn chance or uniqueness (configurable).</description>
