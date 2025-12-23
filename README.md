@@ -43,7 +43,7 @@ Disables the ability to toggle the speed mode feature of the game.
 ### No Teleport Requirement
 Teleport stones are no longer required when using the save crystal teleport option.
 
-### Removeable Targeted Party Members
+### Removable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 
 ## Installation/Updating/Uninstallation (LUA Scripts)
