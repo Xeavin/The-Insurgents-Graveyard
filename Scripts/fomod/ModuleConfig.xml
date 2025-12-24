@@ -42,7 +42,7 @@
 							</typeDescriptor>
 						</plugin>
 						<plugin name="No Overlay Map">
-							<description>Disables the overlay map which would displayed in the middle of the screen after pressing/clicking the Tab/L3/LS key/button.</description>
+							<description>Disables the overlay map which is shown on the middle of the screen after pressing/clicking the Tab/L3/LS key/button.</description>
 							<files>
 								<file source="data\x64\scripts\NoOverlayMap.lua" destination="x64\scripts\NoOverlayMap.lua" priority="0" />
 							</files>
@@ -60,7 +60,7 @@
 							</typeDescriptor>
 						</plugin>
 						<plugin name="No Speed Mode">
-							<description>Disables the ability to toggle the speed mode feature of the game.</description>
+							<description>Disables the speed mode feature of the game.</description>
 							<files>
 								<file source="data\x64\scripts\NoSpeedMode.lua" destination="x64\scripts\NoSpeedMode.lua" priority="0" />
 							</files>
