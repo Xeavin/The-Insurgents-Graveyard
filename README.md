@@ -45,6 +45,9 @@ Disables the speed mode feature of the game.
 ### No Teleport Requirement
 Teleport stones are no longer required when using the save crystal teleport option.
 
+### Priority Escape
+Party members will prioritize following the player party leader and idling over confuse, berserk, gambits, and more when fleeing.
+
 ### Removable Targeted Party Members
 Enables the ability to remove any targeted party members from the party.
 

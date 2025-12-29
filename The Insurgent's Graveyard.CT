@@ -510,6 +510,53 @@ dealloc(ntr_newmem)
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
+          <ID>83795</ID>
+          <Description>"Priority Escape"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(pe_newmem,1024)
+registersymbol(pe_newmem)
+
+pe_newmem:
+pe_code:
+  mov rax,[rbx+00000698] //battle unit keep
+  xor ecx,ecx
+
+  cmp byte ptr [rax+05],cl //type
+  jne short pe_return //is a foe
+
+  cmp [01139340],ecx //no fleeing state
+  je 00328846
+
+pe_return:
+  jmp pe_ret
+
+
+/* party members will prioritize following the player party leader and idling over confuse, berserk, gambits, and more when fleeing. */
+define(pe_def,00328755)
+assert(pe_def,48 8B 83 98 06 00 00)
+registersymbol(pe_def)
+
+pe_def:
+  //mov rax,[rbx+00000698]
+  jmp pe_code
+  nop 02
+pe_ret:
+
+
+[disable]
+pe_def:
+  db 48 8B 83 98 06 00 00
+
+unregistersymbol(pe_def)
+
+unregistersymbol(pe_newmem)
+dealloc(pe_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
           <ID>43383</ID>
           <Description>"Removable Targeted Party Members"</Description>
           <VariableType>Auto Assembler Script</VariableType>
@@ -1084,6 +1131,53 @@ ntr_def:
 unregistersymbol(ntr_def)
 
 dealloc(ntr_newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>83693</ID>
+          <Description>"Priority Escape"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(pe_newmem,1024)
+registersymbol(pe_newmem)
+
+pe_newmem:
+pe_code:
+  mov rax,[rbx+00000698] //battle unit keep
+  xor ecx,ecx
+
+  cmp byte ptr [rax+05],cl //type
+  jne short pe_return //is a foe
+
+  cmp [01E0C2B8],ecx //no fleeing state
+  je 00305C61
+
+pe_return:
+  jmp pe_ret
+
+
+/* party members will prioritize following the player party leader and idling over confuse, berserk, gambits, and more when fleeing. */
+define(pe_def,00305B66)
+assert(pe_def,48 8B 83 98 06 00 00)
+registersymbol(pe_def)
+
+pe_def:
+  //mov rax,[rbx+00000698]
+  jmp pe_code
+  nop 02
+pe_ret:
+
+
+[disable]
+pe_def:
+  db 48 8B 83 98 06 00 00
+
+unregistersymbol(pe_def)
+
+unregistersymbol(pe_newmem)
+dealloc(pe_newmem)
 
 </AssemblerScript>
         </CheatEntry>

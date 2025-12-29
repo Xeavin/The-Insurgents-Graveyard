@@ -77,6 +77,15 @@
 								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Priority Escape">
+							<description>Party members will prioritize following the player party leader and idling over confuse, berserk, gambits, and more when fleeing.</description>
+							<files>
+								<file source="data\x64\scripts\PriorityEscape.lua" destination="x64\scripts\PriorityEscape.lua" priority="0" />
+							</files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
 						<plugin name="Removable Targeted Party Members">
 							<description>Enables the ability to remove any targeted party members from the party.</description>
 							<files>
