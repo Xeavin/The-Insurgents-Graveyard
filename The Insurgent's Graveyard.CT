@@ -150,7 +150,7 @@ lsr2_ignore:
 
   align 10
 lsr_fgl: //flag group list
-  dd 06 //count
+  dd 08 //count
 
   //flag groups
   dd 04 //party menu - equip
@@ -158,7 +158,9 @@ lsr_fgl: //flag group list
   dd 07 //party menu - clan primer
   dd 08 //party menu - party
   dd 09 //party menu - gambits
+  dd 0B //party menu - clan primer - hunts, bestiary, sky pirate's den
   dd 10 //party menu - world map
+  dd 11 //battle menu - gambits
 
 
 /* minimap. */
@@ -726,7 +728,7 @@ lsr2_ignore:
 
   align 10
 lsr_fgl: //flag group list
-  dd 06 //count
+  dd 08 //count
 
   //flag groups
   dd 04 //party menu - equip
@@ -734,7 +736,9 @@ lsr_fgl: //flag group list
   dd 07 //party menu - clan primer
   dd 08 //party menu - party
   dd 09 //party menu - gambits
+  dd 0B //party menu - clan primer - hunts, bestiary, sky pirate's den
   dd 10 //party menu - world map
+  dd 11 //battle menu - gambits
 
 
 /* minimap. */
