@@ -1,50 +1,60 @@
 --Made by Xeavin
 local codePointers = {
-0x00281B85,
-0x00281BB8,
-0x00281BDC,
-0x00281C00,
-0x00281C2D,
-0x00281C69,
 0x00253DD6,
-0x002540B4}
+0x0032A8BB}
 
 local originalBytes = {
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xC9},
-{0x85, 0xD2},
-{0x85, 0xD2},
 {0x66, 0x83, 0xF8, 0x10},
-{0x85, 0xC0}}
+{0xE9, 0xB0, 0xD0, 0x04, 0x00}}
 
 local codes = {
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
-[[
-  test esp,esp
-]],
 [[
   cmp eax,eax
   nop 0x02
 ]],
 [[
-  test esp,esp
+  jmp %lsr2_code%
 ]]}
+
+local assemblies =
+[[
+lsr2_code:
+  lea r8,[lsr_fgl]
+
+  mov eax,[r8]
+  test eax,eax
+  je short lsr2_check
+
+lsr2_loop:
+  cmp ecx,[r8+rax*4]
+  je short lsr2_ignore
+
+  dec eax
+  jne short lsr2_loop
+
+lsr2_check:
+  jmp 0x00377970
+
+lsr2_ignore:
+  mov eax,0x00000001
+  ret
+
+
+  .align 0x10
+lsr_fgl:
+  .dd 0x06
+
+  .dd 0x04
+  .dd 0x06
+  .dd 0x07
+  .dd 0x08
+  .dd 0x09
+  .dd 0x10
+]]
+
+local symbols = {
+  "lsr2_code"
+}
 
 local function applyPatch()
   for i = 1, #codePointers do
@@ -55,6 +65,7 @@ local function applyPatch()
     end
   end
 
+  memory.assemble(assemblies, symbols)
   for i = 1, #codePointers do
     memory.assemble(codes[i], codePointers[i])
   end

@@ -122,122 +122,77 @@ unregistersymbol(fpsbp_def)
           <ID>43416</ID>
           <Description>"Lift Story Restrictions"</Description>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>/* ignores the requirements in "mapjumpgroupflagrom.bin". */
-[enable]
-/* party menu. */
-define(lsr_def,002A1E46)
-assert(lsr_def,85 C0)
-registersymbol(lsr_def)
+          <AssemblerScript>[enable]
+alloc(lsr_newmem,1024)
 
-lsr_def:
-  //test eax,eax
-  test esp,esp
+lsr_newmem:
+lsr2_code:
+  lea r8,[lsr_fgl]
 
+  mov eax,[r8] //count
+  test eax,eax
+  je short lsr2_check
 
-/* equipment menu. */
-define(lsr2_def,002A1E72)
-assert(lsr2_def,85 C0)
-registersymbol(lsr2_def)
+lsr2_loop:
+  cmp ecx,[r8+rax*4] //flag group
+  je short lsr2_ignore
 
-lsr2_def:
-  //test eax,eax
-  test esp,esp
+  dec eax
+  jne short lsr2_loop
 
+lsr2_check:
+  jmp 003A1EA0
 
-/* licenses menu. */
-define(lsr3_def,002A1E8F)
-assert(lsr3_def,85 C0)
-registersymbol(lsr3_def)
-
-lsr3_def:
-  //test eax,eax
-  test esp,esp
+lsr2_ignore:
+  mov eax,00000001
+  ret
 
 
-/* gambits menu. */
-define(lsr4_def,002A1EAC)
-assert(lsr4_def,85 C0)
-registersymbol(lsr4_def)
+  align 10
+lsr_fgl: //flag group list
+  dd 06 //count
 
-lsr4_def:
-  //test eax,eax
-  test esp,esp
-
-
-/* world map. */
-define(lsr5_def,002A1ED2)
-assert(lsr5_def,85 C0)
-registersymbol(lsr5_def)
-
-lsr5_def:
-  //test eax,eax
-  test esp,esp
-
-
-/* clan primer. */
-define(lsr6_def,002A1F07)
-assert(lsr6_def,85 C0)
-registersymbol(lsr6_def)
-
-lsr6_def:
-  //test eax,eax
-  test esp,esp
+  //flag groups
+  dd 04 //party menu - equip
+  dd 06 //party menu - licenses
+  dd 07 //party menu - clan primer
+  dd 08 //party menu - party
+  dd 09 //party menu - gambits
+  dd 10 //party menu - world map
 
 
 /* minimap. */
-define(lsr7_def,002725F9)
-assert(lsr7_def,66 83 F8 10)
-registersymbol(lsr7_def)
+define(lsr_def,002725F9)
+assert(lsr_def,66 83 F8 10)
+registersymbol(lsr_def)
 
-lsr7_def:
+lsr_def:
   //cmp ax,10
   cmp eax,eax
   nop 02
 
 
-/* party leader in battle. */
-define(lsr8_def,00272904)
-assert(lsr8_def,85 C0)
-registersymbol(lsr8_def)
+/* ignores the requirements in "mapjumpgroupflagrom.bin". */
+define(lsr2_def,0034ED0B)
+assert(lsr2_def,E9 90 31 05 00)
+registersymbol(lsr2_def)
 
-lsr8_def:
-  //test eax,eax
-  test esp,esp
+lsr2_def:
+  //jmp 003A1EA0
+  jmp lsr2_code
 
 
 [disable]
-lsr8_def:
-  db 85 C0
-
-lsr7_def:
-  db 66 83 F8 10
-
-lsr6_def:
-  db 85 C0
-
-lsr5_def:
-  db 85 C0
-
-lsr4_def:
-  db 85 C0
-
-lsr3_def:
-  db 85 C0
-
 lsr2_def:
-  db 85 C0
+  db E9 90 31 05 00
 
 lsr_def:
-  db 85 C0
+  db 66 83 F8 10
 
-unregistersymbol(lsr8_def)
-unregistersymbol(lsr7_def)
-unregistersymbol(lsr6_def)
-unregistersymbol(lsr5_def)
-unregistersymbol(lsr4_def)
-unregistersymbol(lsr3_def)
 unregistersymbol(lsr2_def)
 unregistersymbol(lsr_def)
+
+dealloc(lsr_newmem)
 
 </AssemblerScript>
         </CheatEntry>
@@ -743,122 +698,77 @@ unregistersymbol(fpsbp_def)
           <ID>43406</ID>
           <Description>"Lift Story Restrictions"</Description>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>/* ignores the requirements in "mapjumpgroupflagrom.bin". */
-[enable]
-/* party menu. */
-define(lsr_def,00281B85)
-assert(lsr_def,85 C9)
-registersymbol(lsr_def)
+          <AssemblerScript>[enable]
+alloc(lsr_newmem,1024)
 
-lsr_def:
-  //test ecx,ecx
-  test esp,esp
+lsr_newmem:
+lsr2_code:
+  lea r8,[lsr_fgl]
 
+  mov eax,[r8] //count
+  test eax,eax
+  je short lsr2_check
 
-/* equipment menu. */
-define(lsr2_def,00281BB8)
-assert(lsr2_def,85 C9)
-registersymbol(lsr2_def)
+lsr2_loop:
+  cmp ecx,[r8+rax*4] //flag group
+  je short lsr2_ignore
 
-lsr2_def:
-  //test ecx,ecx
-  test esp,esp
+  dec eax
+  jne short lsr2_loop
 
+lsr2_check:
+  jmp 00377970
 
-/* licenses menu. */
-define(lsr3_def,00281BDC)
-assert(lsr3_def,85 C9)
-registersymbol(lsr3_def)
-
-lsr3_def:
-  //test ecx,ecx
-  test esp,esp
+lsr2_ignore:
+  mov eax,00000001
+  ret
 
 
-/* gambits menu. */
-define(lsr4_def,00281C00)
-assert(lsr4_def,85 C9)
-registersymbol(lsr4_def)
+  align 10
+lsr_fgl: //flag group list
+  dd 06 //count
 
-lsr4_def:
-  //test ecx,ecx
-  test esp,esp
-
-
-/* world map. */
-define(lsr5_def,00281C2D)
-assert(lsr5_def,85 D2)
-registersymbol(lsr5_def)
-
-lsr5_def:
-  //test edx,edx
-  test esp,esp
-
-
-/* clan primer. */
-define(lsr6_def,00281C69)
-assert(lsr6_def,85 D2)
-registersymbol(lsr6_def)
-
-lsr6_def:
-  //test edx,edx
-  test esp,esp
+  //flag groups
+  dd 04 //party menu - equip
+  dd 06 //party menu - licenses
+  dd 07 //party menu - clan primer
+  dd 08 //party menu - party
+  dd 09 //party menu - gambits
+  dd 10 //party menu - world map
 
 
 /* minimap. */
-define(lsr7_def,00253DD6)
-assert(lsr7_def,66 83 F8 10)
-registersymbol(lsr7_def)
+define(lsr_def,00253DD6)
+assert(lsr_def,66 83 F8 10)
+registersymbol(lsr_def)
 
-lsr7_def:
+lsr_def:
   //cmp ax,10
   cmp eax,eax
   nop 02
 
 
-/* party leader in battle. */
-define(lsr8_def,002540B4)
-assert(lsr8_def,85 C0)
-registersymbol(lsr8_def)
+/* ignores the requirements in "mapjumpgroupflagrom.bin". */
+define(lsr2_def,0032A8BB)
+assert(lsr2_def,E9 B0 D0 04 00)
+registersymbol(lsr2_def)
 
-lsr8_def:
-  //test eax,eax
-  test esp,esp
+lsr2_def:
+  //jmp 00377970
+  jmp lsr2_code
 
 
 [disable]
-lsr8_def:
-  db 85 C0
-
-lsr7_def:
-  db 66 83 F8 10
-
-lsr6_def:
-  db 85 D2
-
-lsr5_def:
-  db 85 D2
-
-lsr4_def:
-  db 85 C9
-
-lsr3_def:
-  db 85 C9
-
 lsr2_def:
-  db 85 C9
+  db E9 B0 D0 04 00
 
 lsr_def:
-  db 85 C9
+  db 66 83 F8 10
 
-unregistersymbol(lsr8_def)
-unregistersymbol(lsr7_def)
-unregistersymbol(lsr6_def)
-unregistersymbol(lsr5_def)
-unregistersymbol(lsr4_def)
-unregistersymbol(lsr3_def)
 unregistersymbol(lsr2_def)
 unregistersymbol(lsr_def)
+
+dealloc(lsr_newmem)
 
 </AssemblerScript>
         </CheatEntry>
