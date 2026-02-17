@@ -21,12 +21,6 @@ Forces the game to always use XBOX button prompts, regardless of the type of con
 ### Lift Story Restrictions
 Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.
 
-### No Restoration On Save Crystals
-Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects.
-
-### No Overlay Map
-Disables the overlay map which is shown on the middle of the screen after pressing/clicking the Tab/L3/LS key/button.
-
 ### No Mist Bar Restoration On Save Crystals
 Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.
 
@@ -35,6 +29,12 @@ Removes the overhead HP bars of the party.
 
 ### No Overhead Foe HP Bars
 Removes the overhead HP bars of foes (incl. friendly).
+
+### No Overlay Map
+Disables the overlay map which is shown on the middle of the screen after pressing/clicking the Tab/L3/LS key/button.
+
+### No Restoration On Save Crystals
+Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects.
 
 ### No Sounds
 Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.
