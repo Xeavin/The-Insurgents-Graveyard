@@ -130,6 +130,10 @@ You are not allowed to upload, modify, convert, or use any of these assets, exce
 
 ## Changelog
 
+### v1.6.0
+- Added a **Levelbound LP** option.
+- Lua scripts will now require Lua Loader v1.7.2 or higher.
+
 ### v1.5.0
 - Added compatibility for installing Lua scripts with Mod Organizer 2.
 - Added a **Priority Escape** option.
