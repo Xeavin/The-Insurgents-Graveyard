@@ -18,7 +18,7 @@ local function applyPatch()
 end
 
 print("Forced PS Button Prompts (FPSBP): Applying patch.")
-local minVer = {1, 7, 1}
+local minVer = {1, 7, 2}
 if not (checkMinVersion and checkMinVersion(minVer[1], minVer[2], minVer[3])) then
   print("FPSBP: Couldn't apply patch, LUA Loader v" .. minVer[1] .. "." .. minVer[2] .. "." .. minVer[3] .. " or higher required.")
   return
