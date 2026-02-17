@@ -14,6 +14,16 @@
 								<type name="Optional"/>
 							</typeDescriptor>
 						</plugin>
+						<plugin name="Levelbound LP">
+							<description>Prevents party members from gaining license points when defeating low-level foes.</description>
+							<files>
+								<file source="data\x64\scripts\LevelboundLP.lua" destination="x64\scripts\LevelboundLP.lua" priority="0" />
+								<file source="data\x64\scripts\config\LevelboundLPConfig.lua" destination="x64\scripts\config\LevelboundLPConfig.lua" priority="0" />
+							</files>
+							<typeDescriptor>
+								<type name="Optional"/>
+							</typeDescriptor>
+						</plugin>
 						<plugin name="Lift Story Restrictions">
 							<description>Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.</description>
 							<files>

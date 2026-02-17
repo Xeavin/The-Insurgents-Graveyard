@@ -119,6 +119,76 @@ unregistersymbol(fpsbp_def)
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
+          <ID>83796</ID>
+          <Description>"Levelbound LP"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(llp_newmem,1024)
+
+label(llp_offset)
+registersymbol(llp_offset)
+
+llp_newmem:
+llp_code:
+  //originalcode
+  test rbx,rbx
+  je 0031B459
+
+  mov r8,[rdi+00000698] //battle unit keep
+  movzx eax,byte ptr [r8+000001C2] //foe level
+  movzx ecx,byte ptr [rbx+000001C2] //party member level
+
+  movsx r9d,byte ptr [llp_offset]
+  add ecx,r9d
+
+  cmp eax,ecx
+  jl 0031B466
+
+  jmp llp_ret
+
+
+  align 10
+llp_offset:
+  db 00
+
+
+/*
+  prevents party members from gaining license points when defeating low-level foes.
+  formula: foe level ≥ party member level + offset
+*/
+define(llp_def,0031B446)
+assert(llp_def,48 85 DB 74 0E)
+registersymbol(llp_def)
+
+llp_def:
+  //test rbx,rbx
+  //je 0031B459
+  jmp llp_code
+llp_ret:
+
+
+[disable]
+llp_def:
+  db 48 85 DB 74 0E
+
+unregistersymbol(llp_def)
+
+unregistersymbol(llp_offset)
+dealloc(llp_newmem)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>83800</ID>
+              <Description>"Offset"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>llp_offset</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
           <ID>43416</ID>
           <Description>"Lift Story Restrictions"</Description>
           <VariableType>Auto Assembler Script</VariableType>
@@ -742,6 +812,76 @@ fpsbp_def:
 unregistersymbol(fpsbp_def)
 
 </AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>83692</ID>
+          <Description>"Levelbound LP"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+alloc(llp_newmem,1024)
+
+label(llp_offset)
+registersymbol(llp_offset)
+
+llp_newmem:
+llp_code:
+  //originalcode
+  test rbx,rbx
+  je 002F9159
+
+  mov r8,[rdi+00000698] //battle unit keep
+  movzx eax,byte ptr [r8+000001C2] //foe level
+  movzx ecx,byte ptr [rbx+000001C2] //party member level
+
+  movsx r9d,byte ptr [llp_offset]
+  add ecx,r9d
+
+  cmp eax,ecx
+  jl 002F9166
+
+  jmp llp_ret
+
+
+  align 10
+llp_offset:
+  db 00
+
+
+/*
+  prevents party members from gaining license points when defeating low-level foes.
+  formula: foe level ≥ party member level + offset
+*/
+define(llp_def,002F9146)
+assert(llp_def,48 85 DB 74 0E)
+registersymbol(llp_def)
+
+llp_def:
+  //test rbx,rbx
+  //je 002F9159
+  jmp llp_code
+llp_ret:
+
+
+[disable]
+llp_def:
+  db 48 85 DB 74 0E
+
+unregistersymbol(llp_def)
+
+unregistersymbol(llp_offset)
+dealloc(llp_newmem)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>83801</ID>
+              <Description>"Offset"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>llp_offset</Address>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
           <ID>43406</ID>

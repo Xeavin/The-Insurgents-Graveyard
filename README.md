@@ -18,6 +18,23 @@ Forces the game to always use PS button prompts, regardless of the type of contr
 ### Forced Xbox Button Prompts
 Forces the game to always use XBOX button prompts, regardless of the type of controller used.
 
+### Levelbound LP
+Prevents party members from gaining license points when defeating low-level foes.
+
+License points are now only gained if a foe's level is equal to or higher than that of a party member.
+
+The minimum required foe level can be adjusted with an offset to make license point gain easier or harder.
+
+#### Formula
+Foe Level ≥ Party Member Level + Offset
+
+#### Examples
+| Party Member Level | Offset | Required Foe Level |
+| :----------------: | :----: | :----------------: |
+| 5                  | 0      | 5 or higher        |
+| 5                  | 1      | 6 or higher        |
+| 5                  | -1     | 4 or higher        |
+
 ### Lift Story Restrictions
 Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.
 
