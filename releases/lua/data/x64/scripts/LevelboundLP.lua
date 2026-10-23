@@ -70,6 +70,14 @@ local function checkOriginalBytes(target, originalBytes)
 end
 
 local function enablePatch()
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
+      print("LLP: Couldn't apply patch, executable is unexpectedly modified.")
+      return false
+    end
+  end
+
   for i, entry in ipairs(patches) do
     if entry.blockCode and entry.symbols then
       memory.assemble(entry.blockCode, entry.symbols)
@@ -79,6 +87,8 @@ local function enablePatch()
       memory.assemble(entry.patchCode, entry.target)
     end
   end
+
+  return true
 end
 
 local function setLevelOffset()
@@ -97,16 +107,11 @@ local function onConfigChange(filepath, stats, created, deleted)
 end
 
 local function applyPatch()
-  for _, entry in ipairs(patches) do
-    if entry.target and entry.originalBytes and
-       not checkOriginalBytes(entry.target, entry.originalBytes) then
-      print("LLP: Couldn't apply patch, executable is unexpectedly modified.")
-      return
-    end
+  if not enablePatch() then
+    return
   end
 
   loadConfig()
-  enablePatch()
   setLevelOffset()
   event.registerFileChangeHandler(configPath, onConfigChange)
 end
