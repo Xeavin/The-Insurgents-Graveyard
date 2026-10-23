@@ -69,32 +69,16 @@ local function checkOriginalBytes(target, originalBytes)
   return true
 end
 
-local allocatedBlocks = {}
 local function enablePatch()
   for i, entry in ipairs(patches) do
     if entry.blockCode and entry.symbols then
-      allocatedBlocks[i] = memory.assemble(entry.blockCode, entry.symbols)
+      memory.assemble(entry.blockCode, entry.symbols)
     end
 
     if entry.target and entry.patchCode then
       memory.assemble(entry.patchCode, entry.target)
     end
   end
-end
-
-local function disablePatch()
-  for i, entry in ipairs(patches) do
-    if entry.target and entry.originalBytes then
-      memory.writeArray(entry.target, entry.originalBytes)
-    end
-
-    if entry.blockCode and entry.symbols then
-      memory.unregisterSymbol(entry.symbols)
-      memory.deallocExe(allocatedBlocks[i])
-    end
-  end
-
-  allocatedBlocks = {}
 end
 
 local function setLevelOffset()
@@ -108,8 +92,6 @@ local function onConfigChange(filepath, stats, created, deleted)
   end
 
   if loadConfig() then
-    disablePatch()
-    enablePatch()
     setLevelOffset()
   end
 end
