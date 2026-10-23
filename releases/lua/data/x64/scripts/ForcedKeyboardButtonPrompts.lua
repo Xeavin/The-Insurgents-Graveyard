@@ -1,20 +1,44 @@
 --Made by Xeavin
-local codePointer = 0x00197780
-local originalBytes = {0x0F, 0xB6, 0x41, 0x38}
-local code =
-[[
-  xor eax,eax
-  nop 0x02
-]]
+local patches = {
+  {
+    target = 0x00197780,
+    originalBytes = {0x0F, 0xB6, 0x41, 0x38},
+    patchCode = [[
+      xor eax,eax
+      nop 0x02
+    ]]
+  }
+}
 
-local function applyPatch()
-  local readBytes = memory.readArray(codePointer, #originalBytes)
-  if table.concat(readBytes) ~= table.concat(originalBytes) then
-    print("FKBP: Couldn't apply patch, executable is unexpectedly modified.")
-    return
+local function checkOriginalBytes(target, originalBytes)
+  local currentBytes = memory.readArray(target, #originalBytes)
+  for i = 1, #originalBytes do
+    if currentBytes[i] ~= originalBytes[i] then
+      return false
+    end
   end
 
-  memory.assemble(code, codePointer)
+  return true
+end
+
+local function applyPatch()
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
+      print("FKBP: Couldn't apply patch, executable is unexpectedly modified.")
+      return
+    end
+  end
+
+  for _, entry in ipairs(patches) do
+    if entry.blockCode and entry.symbols then
+      memory.assemble(entry.blockCode, entry.symbols)
+    end
+
+    if entry.target and entry.patchCode then
+      memory.assemble(entry.patchCode, entry.target)
+    end
+  end
 end
 
 print("Forced Keyboard Button Prompts (FKBP): Applying patch.")

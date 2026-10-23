@@ -1,38 +1,37 @@
 --Made by Xeavin
-local codePointer = 0x002F9146
-local originalBytes = {0x48, 0x85, 0xDB, 0x74, 0x0E}
-local code =
-[[
-  jmp %llp_code%
-]]
+local patches = {
+  {
+    blockCode = [[
+    llp_offset:
+      .db 0x00
+    ]],
+    symbols = {"llp_offset"}
+  },
+  {
+    target = 0x002F9146,
+    originalBytes = {0x48, 0x85, 0xDB, 0x74, 0x0E},
+    patchCode = [[
+      jmp %llp_code%
+    ]],
+    blockCode = [[
+    llp_code:
+      test rbx,rbx
+      je 0x002F9159
 
-local assemblies =
-[[
-llp_code:
-  test rbx,rbx
-  je 0x002F9159
+      mov r8,[rdi+0x00000698]
+      movzx eax,byte ptr [r8+0x000001C2]
+      movzx ecx,byte ptr [rbx+0x000001C2]
 
-  mov r8,[rdi+0x00000698]
-  movzx eax,byte ptr [r8+0x000001C2]
-  movzx ecx,byte ptr [rbx+0x000001C2]
+      movsx r9d,byte ptr [%llp_offset%]
+      add ecx,r9d
 
-  movsx r9d,byte ptr [llp_offset]
-  add ecx,r9d
+      cmp eax,ecx
+      jl 0x002F9166
 
-  cmp eax,ecx
-  jl 0x002F9166
-
-  jmp 0x002F914B
-
-
-  .align 0x10
-llp_offset:
-  .db 0x00
-]]
-
-local symbols = {
-  "llp_code",
-  "llp_offset"
+      jmp 0x002F914B
+    ]],
+    symbols = {"llp_code"}
+  }
 }
 
 local function getConfigEnv()
@@ -59,18 +58,46 @@ local function loadConfig()
   return true
 end
 
+local function checkOriginalBytes(target, originalBytes)
+  local currentBytes = memory.readArray(target, #originalBytes)
+  for i = 1, #originalBytes do
+    if currentBytes[i] ~= originalBytes[i] then
+      return false
+    end
+  end
+
+  return true
+end
+
+local allocatedBlocks = {}
 local function enablePatch()
-  memory.assemble(assemblies, symbols)
-  memory.assemble(code, codePointer)
+  for i, entry in ipairs(patches) do
+    if entry.blockCode and entry.symbols then
+      allocatedBlocks[i] = memory.assemble(entry.blockCode, entry.symbols)
+    end
+
+    if entry.target and entry.patchCode then
+      memory.assemble(entry.patchCode, entry.target)
+    end
+  end
 
   local offsetMem = memory.getSymbol("llp_offset")
   memory.s8[offsetMem] = offset
 end
 
 local function disablePatch()
-  memory.writeArray(codePointer, originalBytes)
-  memory.deallocExe(memory.getSymbol(symbols[1]))
-  memory.unregisterSymbol(symbols)
+  for i, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes then
+      memory.writeArray(entry.target, entry.originalBytes)
+    end
+
+    if entry.blockCode and entry.symbols then
+      memory.unregisterSymbol(entry.symbols)
+      memory.deallocExe(allocatedBlocks[i])
+    end
+  end
+
+  allocatedBlocks = {}
 end
 
 local function onConfigChange(filepath, stats, created, deleted)
@@ -85,10 +112,12 @@ local function onConfigChange(filepath, stats, created, deleted)
 end
 
 local function applyPatch()
-local readBytes = memory.readArray(codePointer, #originalBytes)
-  if table.concat(readBytes) ~= table.concat(originalBytes) then
-    print("LLP: Couldn't apply patch, executable is unexpectedly modified.")
-    return
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
+      print("LLP: Couldn't apply patch, executable is unexpectedly modified.")
+      return
+    end
   end
 
   loadConfig()

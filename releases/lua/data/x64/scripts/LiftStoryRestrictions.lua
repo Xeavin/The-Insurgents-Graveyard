@@ -1,75 +1,89 @@
 --Made by Xeavin
-local codePointers = {
-0x00253DD6,
-0x0032A8BB}
+local patches = {
+  {
+    blockCode = [[
+    lsr_fgl:
+      .dd 0x08
 
-local originalBytes = {
-{0x66, 0x83, 0xF8, 0x10},
-{0xE9, 0xB0, 0xD0, 0x04, 0x00}}
+      .dd 0x04
+      .dd 0x06
+      .dd 0x07
+      .dd 0x08
+      .dd 0x09
+      .dd 0x0B
+      .dd 0x10
+      .dd 0x11
+    ]],
+    symbols = {"lsr_fgl"}
+  },
+  {
+    target = 0x00253DD6,
+    originalBytes = {0x66, 0x83, 0xF8, 0x10},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x02
+    ]]
+  },
+  {
+    target = 0x0032A8BB,
+    originalBytes = {0xE9, 0xB0, 0xD0, 0x04, 0x00},
+    patchCode = [[
+      jmp %lsr2_code%
+    ]],
+    blockCode = [[
+    lsr2_code:
+      lea r8,[%lsr_fgl%]
 
-local codes = {
-[[
-  cmp eax,eax
-  nop 0x02
-]],
-[[
-  jmp %lsr2_code%
-]]}
+      mov eax,[r8]
+      test eax,eax
+      je short lsr2_check
 
-local assemblies =
-[[
-lsr2_code:
-  lea r8,[lsr_fgl]
+    lsr2_loop:
+      cmp ecx,[r8+rax*4]
+      je short lsr2_ignore
 
-  mov eax,[r8]
-  test eax,eax
-  je short lsr2_check
+      dec eax
+      jne short lsr2_loop
 
-lsr2_loop:
-  cmp ecx,[r8+rax*4]
-  je short lsr2_ignore
+    lsr2_check:
+      jmp 0x00377970
 
-  dec eax
-  jne short lsr2_loop
-
-lsr2_check:
-  jmp 0x00377970
-
-lsr2_ignore:
-  mov eax,0x00000001
-  ret
-
-
-  .align 0x10
-lsr_fgl:
-  .dd 0x08
-
-  .dd 0x04
-  .dd 0x06
-  .dd 0x07
-  .dd 0x08
-  .dd 0x09
-  .dd 0x0B
-  .dd 0x10
-  .dd 0x11
-]]
-
-local symbols = {
-  "lsr2_code"
+    lsr2_ignore:
+      mov eax,0x00000001
+      ret
+    ]],
+    symbols = {"lsr2_code"}
+  }
 }
 
+local function checkOriginalBytes(target, originalBytes)
+  local currentBytes = memory.readArray(target, #originalBytes)
+  for i = 1, #originalBytes do
+    if currentBytes[i] ~= originalBytes[i] then
+      return false
+    end
+  end
+
+  return true
+end
+
 local function applyPatch()
-  for i = 1, #codePointers do
-    local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
-    if table.concat(readBytes) ~= table.concat(originalBytes[i]) then
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
       print("LSR: Couldn't apply patch, executable is unexpectedly modified.")
       return
     end
   end
 
-  memory.assemble(assemblies, symbols)
-  for i = 1, #codePointers do
-    memory.assemble(codes[i], codePointers[i])
+  for _, entry in ipairs(patches) do
+    if entry.blockCode and entry.symbols then
+      memory.assemble(entry.blockCode, entry.symbols)
+    end
+
+    if entry.target and entry.patchCode then
+      memory.assemble(entry.patchCode, entry.target)
+    end
   end
 end
 

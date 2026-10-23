@@ -1,45 +1,67 @@
 --Made by Xeavin
-local codePointers = {
-0x00284CF2,
-0x00285E12,
-0x0028463A,
-0x0028427C}
+local patches = {
+  {
+    target = 0x00284CF2,
+    originalBytes = {0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x04
+    ]]
+  },
+  {
+    target = 0x00285E12,
+    originalBytes = {0xF7, 0x03, 0x00, 0x00, 0x02, 0x00},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x04
+    ]]
+  },
+  {
+    target = 0x0028463A,
+    originalBytes = {0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x04
+    ]]
+  },
+  {
+    target = 0x0028427C,
+    originalBytes = {0x41, 0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x05
+    ]]
+  }
+}
 
-local originalBytes = {
-{0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
-{0xF7, 0x03, 0x00, 0x00, 0x02, 0x00},
-{0xF7, 0x06, 0x00, 0x00, 0x02, 0x00},
-{0x41, 0xF7, 0x06, 0x00, 0x00, 0x02, 0x00}}
+local function checkOriginalBytes(target, originalBytes)
+  local currentBytes = memory.readArray(target, #originalBytes)
+  for i = 1, #originalBytes do
+    if currentBytes[i] ~= originalBytes[i] then
+      return false
+    end
+  end
 
-local codes = {
-[[
-  cmp eax,eax
-  nop 0x04
-]],
-[[
-  cmp eax,eax
-  nop 0x04
-]],
-[[
-  cmp eax,eax
-  nop 0x04
-]],
-[[
-  cmp eax,eax
-  nop 0x05
-]]}
+  return true
+end
 
 local function applyPatch()
-  for i = 1, #codePointers do
-    local readBytes = memory.readArray(codePointers[i], #originalBytes[i])
-    if table.concat(readBytes) ~= table.concat(originalBytes[i]) then
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
       print("RTPM: Couldn't apply patch, executable is unexpectedly modified.")
       return
     end
   end
 
-  for i = 1, #codePointers do
-    memory.assemble(codes[i], codePointers[i])
+  for _, entry in ipairs(patches) do
+    if entry.blockCode and entry.symbols then
+      memory.assemble(entry.blockCode, entry.symbols)
+    end
+
+    if entry.target and entry.patchCode then
+      memory.assemble(entry.patchCode, entry.target)
+    end
   end
 end
 

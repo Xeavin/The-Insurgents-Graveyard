@@ -1,20 +1,44 @@
 --Made by Xeavin
-local codePointer = 0x00253E2F
-local originalBytes = {0x80, 0x3D, 0x1A, 0xE9, 0xE3, 0x01, 0x03}
-local code =
-[[
-  cmp eax,eax
-  nop 0x05
-]]
+local patches = {
+  {
+    target = 0x00253E2F,
+    originalBytes = {0x80, 0x3D, 0x1A, 0xE9, 0xE3, 0x01, 0x03},
+    patchCode = [[
+      cmp eax,eax
+      nop 0x05
+    ]]
+  }
+}
 
-local function applyPatch()
-  local readBytes = memory.readArray(codePointer, #originalBytes)
-  if table.concat(readBytes) ~= table.concat(originalBytes) then
-    print("NOM: Couldn't apply patch, executable is unexpectedly modified.")
-    return
+local function checkOriginalBytes(target, originalBytes)
+  local currentBytes = memory.readArray(target, #originalBytes)
+  for i = 1, #originalBytes do
+    if currentBytes[i] ~= originalBytes[i] then
+      return false
+    end
   end
 
-  memory.assemble(code, codePointer)
+  return true
+end
+
+local function applyPatch()
+  for _, entry in ipairs(patches) do
+    if entry.target and entry.originalBytes and
+       not checkOriginalBytes(entry.target, entry.originalBytes) then
+      print("NOM: Couldn't apply patch, executable is unexpectedly modified.")
+      return
+    end
+  end
+
+  for _, entry in ipairs(patches) do
+    if entry.blockCode and entry.symbols then
+      memory.assemble(entry.blockCode, entry.symbols)
+    end
+
+    if entry.target and entry.patchCode then
+      memory.assemble(entry.patchCode, entry.target)
+    end
+  end
 end
 
 print("No Overlay Map (NOM): Applying patch.")
