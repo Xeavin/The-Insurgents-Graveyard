@@ -80,9 +80,6 @@ local function enablePatch()
       memory.assemble(entry.patchCode, entry.target)
     end
   end
-
-  local offsetMem = memory.getSymbol("llp_offset")
-  memory.s8[offsetMem] = offset
 end
 
 local function disablePatch()
@@ -100,6 +97,11 @@ local function disablePatch()
   allocatedBlocks = {}
 end
 
+local function setLevelOffset()
+  local offsetMem = memory.getSymbol("llp_offset")
+  memory.s8[offsetMem] = offset
+end
+
 local function onConfigChange(filepath, stats, created, deleted)
   if deleted then
     return
@@ -108,6 +110,7 @@ local function onConfigChange(filepath, stats, created, deleted)
   if loadConfig() then
     disablePatch()
     enablePatch()
+    setLevelOffset()
   end
 end
 
@@ -122,6 +125,7 @@ local function applyPatch()
 
   loadConfig()
   enablePatch()
+  setLevelOffset()
   event.registerFileChangeHandler(configPath, onConfigChange)
 end
 
