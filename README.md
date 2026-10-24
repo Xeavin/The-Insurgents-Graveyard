@@ -1,24 +1,31 @@
 # The Insurgent's Graveyard
+
 A collection of FFXII scripts that were either requested and created for others, or are too niche to be included in any of my other mods.
 
 ## Scripts
+
 The following features are available both as a Lua script (Steam) and as a cheat table (Steam/Microsoft Store).
 
 The former works automatically once installed where as the latter needs to be run manually after every game launch.
 
 ### Fixed MP Regeneration
+
 Multiplies the number of steps necessary to gain 1 MP by the speed mode multiplier. So it is no longer possible to exploit the speed-mode by running around in circles to regain a lot of MP.
 
 ### Forced Keyboard Button Prompts
+
 Forces the game to always use keyboard button prompts, as long as no controller is used.
 
 ### Forced PS Button Prompts
+
 Forces the game to always use PS button prompts, regardless of the type of controller used.
 
 ### Forced Xbox Button Prompts
+
 Forces the game to always use XBOX button prompts, regardless of the type of controller used.
 
 ### Levelbound LP
+
 Prevents party members from gaining license points when defeating low-level foes.
 
 License points are now only gained if a foe's level is equal to or higher than that of a party member.
@@ -26,9 +33,11 @@ License points are now only gained if a foe's level is equal to or higher than t
 The minimum required foe level can be adjusted with an offset to make license point gain easier or harder.
 
 #### Formula
+
 Foe Level ≥ Party Member Level + Offset
 
 #### Examples
+
 | Party Member Level | Offset | Required Foe Level |
 | :----------------: | :----: | :----------------: |
 | 5                  | 0      | 5 or higher        |
@@ -36,41 +45,53 @@ Foe Level ≥ Party Member Level + Offset
 | 5                  | -1     | 4 or higher        |
 
 ### Lift Story Restrictions
+
 Allows the usage of the following things from the start of the game: Party-, equipment-, licenses- and gambits menu, world and minimap, clan primer and much more.
 
 ### No Mist Bar Restoration On Save Crystals
+
 Touching save crystals will no longer restore mist bars. Furthermore, mist bars will not be restored after a cutscene that initiates a boss battle.
 
 ### No Overhead Party HP Bars
+
 Removes the overhead HP bars of the party.
 
 ### No Overhead Foe HP Bars
+
 Removes the overhead HP bars of foes (incl. friendly).
 
 ### No Overlay Map
+
 Disables the overlay map which is shown on the middle of the screen after pressing/clicking the Tab/L3/LS key/button.
 
 ### No Restoration On Save Crystals
+
 Touching save crystals will no longer restore HP, MP, etc. or remove any negative status effects.
 
 ### No Sounds
+
 Disables all sound input from the game. It's mostly meant to be used when modding, so you don't have to constantly adjust the sound settings per savefile, nor get your ear blasted every time you enter the main menu.
 
 ### No Speed Mode
+
 Disables the speed mode feature of the game.
 
 ### No Teleport Requirement
+
 Teleport stones are no longer required when using the save crystal teleport option.
 
 ### Priority Escape
+
 Party members will prioritize following the player party leader and idling over confuse, berserk, gambits, and more when fleeing.
 
 ### Removable Targeted Party Members
+
 Enables the ability to remove any targeted party members from the party.
 
 ## Installation/Updating/Uninstallation (Lua Scripts)
 
 ### Installation
+
 1. Download, install and open the [Vortex Mod Manager](https://www.nexusmods.com/site/mods/1?tab=files)﻿.
 2. Select **Games** on the left side bar, search for **Final Fantasy XII** and select **Manage**.
 3. Download and install both the [External File Loader v1.4.3+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files) and [LUA Loader v1.7.2+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files).
@@ -81,23 +102,28 @@ Enables the ability to remove any targeted party members from the party.
 8. Choose which features you would like to install, click on finish once you are done and **make sure to watch out for any notification in the top right corner to both deploy and enable the mod.**
 
 ### Updating
+
 1. Uninstall the mod via the **Vortex Mod Manager**.
 2. Download and install the mod as shown in the installation instructions above.
 3. Update mod requirements if necessary.
 4. Reapply any changes done to the configuration files.
 
 ### Uninstallation
+
 Uninstall the mod via the **Vortex Mod Manager**.
 
 ### Configuration
+
 Some scripts include configurable parameters that are saved into their own configuration file (e.g. **{game}/x64/scripts/config/{script}Config.lua**). This configuration file can be modified via any text editor.
 
 #### Refresh
+
 A configuration file is loaded when the game launches. If it was modified while the game is open, it will be reloaded without requiring a game restart.
 
 If it couldn't be reloaded (e.g. due to syntax errors), the last one that could be will be used instead, unless there never was one (e.g. on game start) in which case default values will be used until all errors are resolved.
 
 ## How To Use (Cheat Table):
+
 1. Download and install [Cheat Engine v7.6+](https://1drv.ms/f/c/553d7cdb377276fa/EsPztaWGPONLkUQrLd8bKxwBQZRkNtlE3K1_wRo-8rdgJw).
 2. Select **Releases** on the right sidebar of this page.
 3. Under **Assets**, click on **TheInsurgentsGraveyard.CT** to download the mod as a cheat table.
@@ -108,33 +134,40 @@ If it couldn't be reloaded (e.g. due to syntax errors), the last one that could 
 8. Navigate to the cheat table and click on **Open**.
 
 ## Compatibility
+
 - Fully compatible with other mods, unless they incorporate the same changes which should be mentioned in their description.
 - Fully compatible with all game languages.
 - Fully compatible with existing saves (no new game required).
 - Only compatible with either the latest Steam (1.0.4.0) or Microsoft Store (1.0.1.0) version of the game.
 
 ## Notes
+
 - Instead of using both the **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option, you can also just use the **No Overhead HP Bars** option of [The Insurgent's Vision](https://www.nexusmods.com/finalfantasy12/mods/220).
 
 ## Troubleshooting
+
 Before reporting any bugs, please ensure that your issue is even tied to this mod. This means disabling every other mod first and testing whether or not your issue still persists. If it does, feel free to contact me on the modding community discord [here](https://discord.gg/UBrP6ME).
 
 ## My Other Mods
+
 For a list of my other mods, you can check out the following pages:
 
 - [Nexusmods](https://www.nexusmods.com/finalfantasy12/users/65929636?tab=user+files)
 - [Github](https://github.com/Xeavin?tab=repositories)
 
 ## Permissions
+
 You are not allowed to upload, modify, convert, or use any of these assets, except for personal use, which must not be shared, distributed, or incorporated into any public use under any circumstances.
 
 ## Changelog
 
 ### v1.6.0
+
 - Added a **Levelbound LP** option.
 - Lua scripts will now require Lua Loader v1.7.2 or higher.
 
 ### v1.5.0
+
 - Added compatibility for installing Lua scripts with Mod Organizer 2.
 - Added a **Priority Escape** option.
 - Removed the **Summons For All** option. It is now available [here](https://www.nexusmods.com/finalfantasy12/mods/381) as a standalone mod instead.
@@ -151,17 +184,20 @@ You are not allowed to upload, modify, convert, or use any of these assets, exce
 - Lua scripts now require Lua Loader v1.7.1 or higher.
 
 ### v1.4.0
+
 - Added a fomod that allows easy installation of all scripts via a mod manager (e.g. Vortex).
 - **Always Spawn Treasures**: Added a config that allows toggling whether or not unique treasures should be able to spawn more than once.
 - Added a **No Overhead Party HP Bars** and **No Overhead Foe HP Bars** option (remnants from The Insurgent's Vision v1.2.0).
 - Cleaned up a few scripts.
 
 ### v1.3.0
+
 - Added an **Always Spawn Treasures** option.
 - Added an **Always Steal Everything** option.
 - Minor formatting fixes.
 
 ### v1.2.0
+
 - All scripts are now also available as a cheat table.
 - Added support for the Microsoft Store version of the game (cheat table only).
 - **No Overlay Map**: Is now actually disabled where as before only its toggle was.
@@ -170,9 +206,11 @@ You are not allowed to upload, modify, convert, or use any of these assets, exce
 - Cleaned up a few scripts.
 
 ### v1.1.0
+
 - Added a **Summons For All** option.
 - **No Restoration On Save Crystals**: Fixed an issue where cutscenes that initiated a boss fight wouldn't restore any HP, MP, etc.
 - **No Restoration On Save Crystals**: Fixed an issue where certain cutscenes could trigger a crash.
 
 ### v1.0.0
+
 - Initial release.
