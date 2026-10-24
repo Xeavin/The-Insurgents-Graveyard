@@ -2,11 +2,7 @@
 
 A collection of FFXII scripts that were either requested and created for others, or are too niche to be included in any of my other mods.
 
-## Scripts
-
-The following features are available both as a Lua script (Steam) and as a cheat table (Steam/Microsoft Store).
-
-The former works automatically once installed where as the latter needs to be run manually after every game launch.
+## Features
 
 ### Fixed MP Regeneration
 
@@ -88,50 +84,13 @@ Party members will prioritize following the player party leader and idling over 
 
 Enables the ability to remove any targeted party members from the party.
 
-## Installation/Updating/Uninstallation (Lua Scripts)
+## Usage
 
-### Installation
+These features are available both as a [Lua script](docs/lua-scripts.md) (Steam) and as a [cheat table](docs/cheat-table.md) (Steam/Microsoft Store).
 
-1. Download, install and open the [Vortex Mod Manager](https://www.nexusmods.com/site/mods/1?tab=files)﻿.
-2. Select **Games** on the left side bar, search for **Final Fantasy XII** and select **Manage**.
-3. Download and install both the [External File Loader v1.4.3+](https://www.nexusmods.com/finalfantasy12/mods/170?tab=files) and [LUA Loader v1.7.2+](https://www.nexusmods.com/finalfantasy12/mods/171?tab=files).
-4. Select **Releases** on the right sidebar of this page.
-5. Under **Assets**, click on **TheInsurgentsGraveyard.7z** to download the mod archive.
-6. Select **Mods** on the left side bar of Vortex and drag and drop the downloaded **TheInsurgentsGraveyard.7z** archive into the **Drop File(s)** field.
-7. Click on the dropdown arrow in the **Actions** column next to row with **TheInsurgentsGraveyard.7z** as the mod name and select **Install**.
-8. Choose which features you would like to install, click on finish once you are done and **make sure to watch out for any notification in the top right corner to both deploy and enable the mod.**
+The former works automatically once installed where as the latter needs to be run manually after every game launch.
 
-### Updating
-
-1. Uninstall the mod via the **Vortex Mod Manager**.
-2. Download and install the mod as shown in the installation instructions above.
-3. Update mod requirements if necessary.
-4. Reapply any changes done to the configuration files.
-
-### Uninstallation
-
-Uninstall the mod via the **Vortex Mod Manager**.
-
-### Configuration
-
-Some scripts include configurable parameters that are saved into their own configuration file (e.g. **{game}/x64/scripts/config/{script}Config.lua**). This configuration file can be modified via any text editor.
-
-#### Refresh
-
-A configuration file is loaded when the game launches. If it was modified while the game is open, it will be reloaded without requiring a game restart.
-
-If it couldn't be reloaded (e.g. due to syntax errors), the last one that could be will be used instead, unless there never was one (e.g. on game start) in which case default values will be used until all errors are resolved.
-
-## How To Use (Cheat Table):
-
-1. Download and install [Cheat Engine v7.6+](https://1drv.ms/f/c/553d7cdb377276fa/EsPztaWGPONLkUQrLd8bKxwBQZRkNtlE3K1_wRo-8rdgJw).
-2. Select **Releases** on the right sidebar of this page.
-3. Under **Assets**, click on **TheInsurgentsGraveyard.CT** to download the mod as a cheat table.
-4. Open the game and Cheat Engine.
-5. Click on **File** -> **Open Process**.
-6. Select the game and click on **Open**.
-7. Click on **File** -> **Open File**.
-8. Navigate to the cheat table and click on **Open**.
+Follow the links for installation and usage instructions.
 
 ## Compatibility
 
