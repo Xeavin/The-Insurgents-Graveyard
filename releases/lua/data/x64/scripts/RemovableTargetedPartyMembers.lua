@@ -66,7 +66,7 @@ local function applyPatch()
 end
 
 print("Removable Targeted Party Members (RTPM): Applying patch.")
-local minVer = {1, 7, 2}
+local minVer = {2, 0, 1}
 if not (checkMinVersion and checkMinVersion(minVer[1], minVer[2], minVer[3])) then
   print("RTPM: Couldn't apply patch, LUA Loader v" .. minVer[1] .. "." .. minVer[2] .. "." .. minVer[3] .. " or higher required.")
   return
