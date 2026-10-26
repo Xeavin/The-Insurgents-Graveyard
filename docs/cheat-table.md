@@ -1,7 +1,7 @@
 # Cheat Table
 
 1. Download and install [Cheat Engine v7.6+](https://1drv.ms/f/c/553d7cdb377276fa/EsPztaWGPONLkUQrLd8bKxwBQZRkNtlE3K1_wRo-8rdgJw).
-2. Select **Releases** on the right sidebar of this page.
+2. Select [Releases](https://github.com/Xeavin/The-Insurgents-Graveyard/releases) on the right sidebar of the main page.
 3. Under **Assets**, click on **TheInsurgentsGraveyard.CT** to download the mod as a cheat table.
 4. Open the game and Cheat Engine.
 5. Click on **File** -> **Open Process**.
