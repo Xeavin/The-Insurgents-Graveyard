@@ -8,3 +8,7 @@
 6. Select the game and click on **Open**.
 7. Click on **File** -> **Open File**.
 8. Navigate to the cheat table and click on **Open**.
+
+Afterwards, you can toggle individual features by clicking the checkbox next to each feature's name. 
+
+Each time you close and reopen the game, you must select its process again in Cheat Engine using **File** -> **Open Process**, then enable your chosen features again. If you prefer to have them applied automatically on every launch, use the [Lua scripts](lua-scripts.md) instead. This option is available only for the Steam version.
