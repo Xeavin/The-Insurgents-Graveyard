@@ -18,7 +18,7 @@
 							<description>Prevents party members from gaining license points when defeating low-level foes.</description>
 							<files>
 								<file source="data\x64\scripts\LevelboundLP.lua" destination="x64\scripts\LevelboundLP.lua" priority="0" />
-								<file source="data\x64\scripts\config\LevelboundLPConfig.lua" destination="x64\scripts\config\LevelboundLPConfig.lua" priority="0" />
+								<file source="data\x64\scripts\config\LevelboundLPConfig.json" destination="x64\scripts\config\LevelboundLPConfig.json" priority="0" />
 							</files>
 							<typeDescriptor>
 								<type name="Optional"/>

@@ -34,26 +34,25 @@ local patches = {
   }
 }
 
-local function getConfigEnv()
-  return setmetatable({}, {__index = _G})
+
+local function fileExists(fileName)
+  local file = io.open(fileName, "r")
+  return file ~= nil and io.close(file)
 end
 
 local offset = 0
-local configPath = config.path .. "/LevelboundLPConfig.lua"
+local configPath = config.path .. "/LevelboundLPConfig.json"
 local function loadConfig()
-  local file, err = loadfile(configPath, "t", getConfigEnv())
-  if not file then
-    print("LLP: Couldn't load settings from config file: " .. err)
+  if not fileExists(configPath) then
     return false
   end
 
-  local status, res = pcall(file)
-  if not status then
-    print("LLP: Couldn't load settings from config file: "  .. res)
+  local configData = config.loadJson(configPath)
+  if not configData then
     return false
   end
 
-  offset = res
+  offset = configData.offset
   print("LLP: Loaded settings from config file.")
   return true
 end

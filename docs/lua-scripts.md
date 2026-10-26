@@ -24,7 +24,7 @@ Uninstall the mod via the **Vortex Mod Manager**.
 
 ## Configuration
 
-Some scripts include configurable parameters that are saved into their own configuration file (e.g. **{game}/x64/scripts/config/{script}Config.lua**). This configuration file can be modified via any text editor.
+Some scripts include configurable parameters that are saved into their own configuration file (e.g. **{game}/x64/scripts/config/{script}Config.json**). This configuration file can be modified via any text editor.
 
 ### Refresh
 
