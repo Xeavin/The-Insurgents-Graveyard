@@ -2,6 +2,13 @@
 
 A chronologically ordered list of notable changes in each version.
 
+## v1.6.1
+
+- **Levelbound LP**: Will no longer briefly disable the patch to reload changes to the configuration file.
+- **Levelbound LP**: Changed the configuration format from Lua to JSON.
+- Refactored patch definitions into structured entries for easier maintenance.
+- Lua scripts will now require Lua Loader v2.0.1 or higher.
+
 ## v1.6.0
 
 - Added a **Levelbound LP** option.
